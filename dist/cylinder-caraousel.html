@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vojon Rosik Restaurant | Bengali authentic Restaurant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        background: radial-gradient(
+          circle at 50% 22%,
+          rgba(253, 249, 241, 0.99) 0%,
+          rgba(245, 236, 222, 0.95) 42%,
+          rgba(234, 218, 191, 0.78) 68%,
+          rgba(255, 252, 247, 0.99) 100%
+        );
+      }
+
+      body {
+        font-family: "Cormorant Garamond", "Palatino Linotype", "Times New Roman", serif;
+        color: #4a2f19;
+      }
+
+      .canvas-layer {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 0;
+      }
+
+      .canvas-layer canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .text-layer {
+        position: fixed;
+        inset: 0;
+        z-index: 10;
+        pointer-events: none;
+      }
+
+      .text-block {
+        position: absolute;
+        text-align: center;
+        opacity: 0;
+      }
+
+      .text-title {
+        font-size: clamp(2.2rem, 5vw, 4.5rem);
+        font-weight: 600;
+        line-height: 0.85;
+        background: linear-gradient(90deg, #4f2d12, #af762f, #f4d392);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 2px 12px rgba(112, 72, 26, 0.22);
+      }
+
+      .text-description {
+        margin-top: 0.5rem;
+        font-size: clamp(1rem, 2.2vw, 1.6rem);
+        font-weight: 500;
+        color: #5f3818;
+      }
+
+      .logo-image {
+        display: block;
+        margin: 0 auto;
+        height: clamp(5.5rem, 15vw, 9rem);
+        width: auto;
+        filter: drop-shadow(0 10px 30px rgba(78, 48, 20, 0.25));
+      }
+
+      .position-top {
+        top: 5rem;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .position-center {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .position-bottom {
+        bottom: 5rem;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      @media (max-width: 768px) {
+        .position-top {
+          top: 25vh;
+        }
+
+        .position-bottom {
+          bottom: 10vh;
+          padding: 0 1.5rem;
+        }
+      }
+
+      #scroll-wrapper {
+        position: relative;
+        z-index: 20;
+      }
+
+      #scroll-content {
+        height: 500vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="canvas-layer">
+      <canvas id="cylinder-canvas"></canvas>
+    </div>
+
+    <div class="text-layer" id="text-layer"></div>
+
+    <div id="scroll-wrapper">
+      <div id="scroll-content"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+    <script type="module">
+      import { Renderer, Camera, Transform, Texture, Program, Mesh, Geometry } from "https://unpkg.com/ogl@0.0.132/dist/ogl.min.mjs";
+
+      const images = [
+        "img/img1.webp",
+        "img/img2.webp",
+        "img/img3.webp",
+        "img/img4.webp",
+        "img/img5.webp",
+        "img/img6.webp",
+        "img/img7.webp",
+        "img/img8.webp",
+        "img/img9.webp",
+        "img/img10.webp",
+        "img/img11.webp",
+        "img/img12.webp",
+      ];
+
+      const perspectives = [
+        {
+          title: "Immersive experiences",
+          description: "Where creativity comes to life",
+          position: "top",
+        },
+        {
+          title: "Vojon Rosik Logo",
+          position: "center",
+          type: "logo",
+          imageSrc: "logo8.png",
+          alt: "Vojon Rosik logo",
+        },
+        {
+          title: "Vojon Rosik Restaurant Pvt .Ltd",
+          description: "Experience authentic flavors",
+          position: "bottom",
+        },
+      ];
+
+      const particleConfig = {
+        numParticles: 12,
+        particleRadius: 3.3,
+        segments: 20,
+        angleSpan: 0.3,
+      };
+
+      const imageConfig = {
+        width: 1024,
+        height: 1024,
+      };
+
+      const cylinderVertex = `
+        attribute vec2 uv;
+        attribute vec3 position;
+        uniform mat4 modelViewMatrix;
+        uniform mat4 projectionMatrix;
+        varying vec2 vUv;
+
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `;
+
+      const cylinderFragment = `
+        precision highp float;
+
+        uniform sampler2D tMap;
+        uniform float uDarkness;
+        uniform float uGlobalAlpha;
+        uniform vec3 uTintColor;
+        uniform float uTintStrength;
+
+        varying vec2 vUv;
+
+        void main() {
+          vec4 tex = texture2D(tMap, vUv);
+          tex.rgb *= (1.0 - uDarkness);
+
+          float maxC = max(tex.r, max(tex.g, tex.b));
+          float minC = min(tex.r, min(tex.g, tex.b));
+          float saturation = maxC - minC;
+          float brightness = dot(tex.rgb, vec3(0.299, 0.587, 0.114));
+
+          float brightMask = smoothstep(0.76, 0.99, brightness);
+          float neutralMask = 1.0 - smoothstep(0.02, 0.22, saturation);
+          float bgMask = brightMask * neutralMask * 0.72;
+          float alpha = max(tex.a * (1.0 - bgMask) * uGlobalAlpha, 0.24 * uGlobalAlpha);
+
+          vec3 tinted = mix(tex.rgb, uTintColor, uTintStrength);
+          gl_FragColor = vec4(tinted, alpha);
+        }
+      `;
+
+      const particleVertex = `
+        attribute vec3 position;
+        uniform mat4 modelViewMatrix;
+        uniform mat4 projectionMatrix;
+
+        void main() {
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `;
+
+      const particleFragment = `
+        precision highp float;
+        uniform vec3 uColor;
+        uniform float uOpacity;
+
+        void main() {
+          gl_FragColor = vec4(uColor, uOpacity);
+        }
+      `;
+
+      const canvas = document.getElementById("cylinder-canvas");
+      const textLayer = document.getElementById("text-layer");
+      const scrollWrapper = document.getElementById("scroll-wrapper");
+
+      const textRefs = [];
+
+      perspectives.forEach((perspective, index) => {
+        const block = document.createElement("div");
+        block.className = `text-block position-${perspective.position}`;
+        block.dataset.index = String(index);
+
+        if (perspective.type === "logo") {
+          const img = document.createElement("img");
+          img.src = perspective.imageSrc;
+          img.alt = perspective.alt || "Vojon Rosik logo";
+          img.className = "logo-image";
+          block.appendChild(img);
+        } else {
+          const title = document.createElement("h2");
+          title.className = "text-title";
+          title.textContent = perspective.title;
+          block.appendChild(title);
+
+          if (perspective.description) {
+            const desc = document.createElement("p");
+            desc.className = "text-description";
+            desc.textContent = perspective.description;
+            block.appendChild(desc);
+          }
+        }
+
+        textLayer.appendChild(block);
+        textRefs.push(block);
+      });
+
+      const cameraAnim = { x: 0, y: 0, z: 8, rotY: 0 };
+      const particles = [];
+      let cylinderMesh = null;
+      let renderer = null;
+      let camera = null;
+      let scene = null;
+      let masterTimeline = null;
+      let autoplayTween = null;
+      let lastRotation = 0;
+      let velocity = 0;
+      let momentum = 0;
+
+      if (window.CustomEase) {
+        window.CustomEase.create("cinematicSilk", "0.45, 0.05, 0.55, 0.95");
+        window.CustomEase.create("cinematicSmooth", "0.25, 0.1, 0.25, 1");
+        window.CustomEase.create("cinematicFlow", "0.33, 0, 0.2, 1");
+        window.CustomEase.create("cinematicLinear", "0.4, 0, 0.6, 1");
+      }
+
+      const blockWheelOrTouch = (event) => {
+        event.preventDefault();
+      };
+
+      const blockKeys = (event) => {
+        const blockedKeys = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "];
+        if (blockedKeys.includes(event.key)) {
+          event.preventDefault();
+        }
+      };
+
+      const lockManualScroll = () => {
+        window.addEventListener("wheel", blockWheelOrTouch, { passive: false });
+        window.addEventListener("touchmove", blockWheelOrTouch, { passive: false });
+        window.addEventListener("keydown", blockKeys, { passive: false });
+      };
+
+      const unlockManualScroll = () => {
+        window.removeEventListener("wheel", blockWheelOrTouch);
+        window.removeEventListener("touchmove", blockWheelOrTouch);
+        window.removeEventListener("keydown", blockKeys);
+      };
+
+      const getResponsiveDimensions = () => {
+        const width = window.innerWidth;
+        const isMobile = width < 768;
+        const isTablet = width >= 768 && width < 1024;
+
+        const maxRadius = isMobile ? 1.8 : isTablet ? 2.2 : 2.5;
+        const cylinderHeight = isMobile ? 0.8 : isTablet ? 1.0 : 1.2;
+        const cameraZ = isMobile ? 6 : isTablet ? 7 : 8;
+        const fov = isMobile ? 50 : 45;
+
+        return {
+          cylinderScale: maxRadius / (isMobile ? 2.2 : 2.5),
+          cylinderHeight,
+          cameraZ,
+          fov,
+          isMobile,
+        };
+      };
+
+      const drawImageCover = (ctx, img, x, y, w, h) => {
+        const imgRatio = img.naturalWidth / img.naturalHeight;
+        const canvasRatio = w / h;
+
+        let sourceX = 0;
+        let sourceY = 0;
+        let sourceWidth = img.naturalWidth;
+        let sourceHeight = img.naturalHeight;
+
+        if (imgRatio > canvasRatio) {
+          sourceWidth = img.naturalHeight * canvasRatio;
+          sourceX = (img.naturalWidth - sourceWidth) / 2;
+        } else {
+          sourceHeight = img.naturalWidth / canvasRatio;
+          sourceY = (img.naturalHeight - sourceHeight) / 2;
+        }
+
+        ctx.save();
+        ctx.translate(x, y + h);
+        ctx.scale(1, -1);
+        ctx.drawImage(img, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, w, h);
+        ctx.restore();
+      };
+
+      const createCylinderGeometry = (gl, config) => {
+        const { radius, height, radialSegments, heightSegments } = config;
+        const positions = [];
+        const uvs = [];
+        const indices = [];
+
+        for (let y = 0; y <= heightSegments; y++) {
+          const v = y / heightSegments;
+          const yPos = (v - 0.5) * height;
+
+          for (let x = 0; x <= radialSegments; x++) {
+            const u = x / radialSegments;
+            const theta = u * Math.PI * 2;
+            const xPos = Math.cos(theta) * radius;
+            const zPos = Math.sin(theta) * radius;
+
+            positions.push(xPos, yPos, zPos);
+            uvs.push(u, 1 - v);
+          }
+        }
+
+        for (let y = 0; y < heightSegments; y++) {
+          for (let x = 0; x < radialSegments; x++) {
+            const a = y * (radialSegments + 1) + x;
+            const b = a + radialSegments + 1;
+            const c = a + 1;
+            const d = b + 1;
+
+            indices.push(a, b, c);
+            indices.push(b, d, c);
+          }
+        }
+
+        return new Geometry(gl, {
+          position: { size: 3, data: new Float32Array(positions) },
+          uv: { size: 2, data: new Float32Array(uvs) },
+          index: { data: new Uint16Array(indices) },
+        });
+      };
+
+      const createParticleGeometry = (gl, config, index, height) => {
+        const { numParticles, particleRadius, segments, angleSpan } = config;
+        const linePositions = [];
+        const startAngle = (index / numParticles) * Math.PI * 2;
+
+        const isTopHalf = index < numParticles / 2;
+        const yPosition = isTopHalf
+          ? height * 0.7 + Math.random() * height * 0.3
+          : -height * 1.0 + Math.random() * height * 0.3;
+
+        for (let j = 0; j <= segments; j++) {
+          const t = j / segments;
+          const angle = startAngle + angleSpan * t;
+          const x = Math.cos(angle) * particleRadius;
+          const z = Math.sin(angle) * particleRadius;
+          linePositions.push(x, yPosition, z);
+        }
+
+        return {
+          geometry: new Geometry(gl, {
+            position: { size: 3, data: new Float32Array(linePositions) },
+          }),
+          userData: {
+            baseAngle: startAngle,
+            angleSpan,
+            baseY: yPosition,
+            speed: 0.5 + Math.random() * 1.0,
+            radius: particleRadius,
+          },
+        };
+      };
+
+      const initScene = () => {
+        const previousScrollRestoration = window.history.scrollRestoration;
+        window.history.scrollRestoration = "manual";
+
+        window.scrollTo(0, 0);
+        lockManualScroll();
+
+        renderer = new Renderer({
+          canvas,
+          width: window.innerWidth,
+          height: window.innerHeight,
+          dpr: Math.min(window.devicePixelRatio, 2),
+          alpha: true,
+          antialias: true,
+        });
+        const gl = renderer.gl;
+        gl.clearColor(0, 0, 0, 0);
+        gl.disable(gl.CULL_FACE);
+
+        const dimensions = getResponsiveDimensions();
+
+        camera = new Camera(gl, { fov: dimensions.fov });
+        camera.position.set(0, 0, dimensions.cameraZ);
+        camera.perspective({
+          fov: dimensions.fov,
+          aspect: window.innerWidth / window.innerHeight,
+        });
+
+        scene = new Transform();
+
+        const cylinderConfig = {
+          radius: window.innerWidth > 768 ? 2.5 : 2.2,
+          height: window.innerWidth > 768 ? 2 : 1.2,
+          radialSegments: 64,
+          heightSegments: 1,
+        };
+
+        const geometry = createCylinderGeometry(gl, cylinderConfig);
+
+        const hardwareLimit = gl.getParameter(gl.MAX_TEXTURE_SIZE);
+        const isMobileDevice = window.innerWidth < 768;
+        const safeLimit = isMobileDevice ? 2048 : Math.min(hardwareLimit, 8192);
+
+        const textureCanvas = document.createElement("canvas");
+        const ctx = textureCanvas.getContext("2d", {
+          willReadFrequently: false,
+          alpha: false,
+        });
+
+        const numImages = images.length;
+        const totalWidthOriginal = imageConfig.width * numImages;
+        const heightOriginal = imageConfig.height;
+        const scale = Math.min(1, safeLimit / totalWidthOriginal);
+        textureCanvas.width = Math.floor(totalWidthOriginal * scale);
+        textureCanvas.height = Math.floor(heightOriginal * scale);
+
+        const imageElements = new Array(numImages).fill(null);
+        let loadedImages = 0;
+        let sceneInitialized = false;
+        let sceneSetupTimeoutId = null;
+
+        const circumference = 2 * Math.PI * cylinderConfig.radius;
+        const textureAspectRatio = imageConfig.height / (imageConfig.width * images.length);
+        const idealHeight = circumference * textureAspectRatio;
+        const heightCorrection = idealHeight / cylinderConfig.height;
+
+        const handleResize = () => {
+          if (!renderer || !camera || !cylinderMesh) return;
+          const newDimensions = getResponsiveDimensions();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          camera.perspective({
+            fov: newDimensions.fov,
+            aspect: window.innerWidth / window.innerHeight,
+          });
+
+          cylinderMesh.scale.set(
+            newDimensions.cylinderScale,
+            newDimensions.cylinderScale * heightCorrection,
+            newDimensions.cylinderScale
+          );
+
+          if (cameraAnim.z === 8 || cameraAnim.z === 7 || cameraAnim.z === 6) {
+            cameraAnim.z = newDimensions.cameraZ;
+          }
+        };
+
+        const finalizeSceneSetup = () => {
+          if (sceneInitialized) return;
+          sceneInitialized = true;
+
+          if (sceneSetupTimeoutId !== null) {
+            window.clearTimeout(sceneSetupTimeoutId);
+            sceneSetupTimeoutId = null;
+          }
+
+          const totalCanvasWidth = textureCanvas.width;
+          const canvasHeight = textureCanvas.height;
+
+          imageElements.forEach((img, i) => {
+            const xStartExact = (i / numImages) * totalCanvasWidth;
+            const xEndExact = ((i + 1) / numImages) * totalCanvasWidth;
+            const xPos = Math.floor(xStartExact);
+            const xEnd = Math.floor(xEndExact);
+            const drawWidthActual = xEnd - xPos;
+
+            if (img) {
+              drawImageCover(ctx, img, xPos, 0, drawWidthActual, canvasHeight);
+              return;
+            }
+
+            ctx.fillStyle = i % 2 === 0 ? "#d9b27a" : "#b07d3b";
+            ctx.fillRect(xPos, 0, drawWidthActual, canvasHeight);
+          });
+
+          const texture = new Texture(gl, {
+            wrapS: gl.CLAMP_TO_EDGE,
+            wrapT: gl.CLAMP_TO_EDGE,
+            minFilter: gl.LINEAR,
+            magFilter: gl.LINEAR,
+            generateMipmaps: false,
+          });
+
+          texture.image = textureCanvas;
+          texture.needsUpdate = true;
+
+          const program = new Program(gl, {
+            vertex: cylinderVertex,
+            fragment: cylinderFragment,
+            uniforms: {
+              tMap: { value: texture },
+              uDarkness: { value: 0.06 },
+              uGlobalAlpha: { value: 0.92 },
+              uTintColor: { value: [0.7, 0.5, 0.24] },
+              uTintStrength: { value: 0.08 },
+            },
+            transparent: true,
+            cullFace: null,
+          });
+
+          cylinderMesh = new Mesh(gl, { geometry, program });
+          cylinderMesh.setParent(scene);
+          cylinderMesh.rotation.y = 0.5;
+          cylinderMesh.scale.set(
+            dimensions.cylinderScale,
+            dimensions.cylinderScale * heightCorrection,
+            dimensions.cylinderScale
+          );
+
+          const tl = window.gsap.timeline({ paused: true });
+          tl.to(cameraAnim, {
+            x: 0,
+            y: 0,
+            z: dimensions.cameraZ,
+            duration: 1.2,
+            ease: "cinematicSilk",
+          })
+            .to(cameraAnim, {
+              x: 0.2,
+              y: 2.2,
+              z: Math.max(4.8, dimensions.cameraZ - 1.2),
+              duration: 1.4,
+              ease: "cinematicFlow",
+            })
+            .to(cameraAnim, {
+              x: 1.2,
+              y: 1.4,
+              z: 3.1,
+              duration: 1.8,
+              ease: "cinematicLinear",
+            })
+            .to(cameraAnim, {
+              x: 0.35,
+              y: 0.4,
+              z: 2.4,
+              duration: 2.4,
+              ease: "cinematicSmooth",
+            })
+            .to(cameraAnim, {
+              x: -1.8,
+              y: -0.6,
+              z: dimensions.cameraZ,
+              duration: 1.4,
+              ease: "cinematicSmooth",
+            });
+
+          tl.to(
+            cylinderMesh.rotation,
+            {
+              y: "+=22.8",
+              duration: 8.2,
+              ease: "none",
+            },
+            0
+          );
+
+          textRefs.forEach((textEl, index) => {
+            const sectionDuration = tl.duration() / perspectives.length;
+            const sectionStart = sectionDuration * index;
+            const fadeInDuration = sectionDuration * 0.2;
+            const holdDuration = sectionDuration * 0.6;
+            const fadeOutDuration = sectionDuration * 0.2;
+
+            tl.fromTo(
+              textEl,
+              { opacity: 0 },
+              { opacity: 1, duration: fadeInDuration, ease: "cinematicSmooth" },
+              sectionStart
+            )
+              .to(textEl, { opacity: 1, duration: holdDuration, ease: "none" }, sectionStart + fadeInDuration)
+              .to(
+                textEl,
+                { opacity: 0, duration: fadeOutDuration, ease: "cinematicSmooth" },
+                sectionStart + fadeInDuration + holdDuration
+              );
+          });
+
+          masterTimeline = tl;
+
+          for (let i = 0; i < particleConfig.numParticles; i++) {
+            const { geometry: lineGeometry, userData } = createParticleGeometry(
+              gl,
+              particleConfig,
+              i,
+              cylinderConfig.height
+            );
+
+            const lineProgram = new Program(gl, {
+              vertex: particleVertex,
+              fragment: particleFragment,
+              uniforms: {
+                uColor: { value: [0.92, 0.72, 0.36] },
+                uOpacity: { value: 0.0 },
+              },
+              transparent: true,
+              depthTest: true,
+            });
+
+            const particle = new Mesh(gl, {
+              geometry: lineGeometry,
+              program: lineProgram,
+              mode: gl.LINE_STRIP,
+            });
+            particle.userData = userData;
+            particle.setParent(scene);
+            particles.push(particle);
+          }
+
+          window.addEventListener("resize", handleResize);
+          handleResize();
+
+          const animate = () => {
+            requestAnimationFrame(animate);
+            camera.position.set(cameraAnim.x, cameraAnim.y, cameraAnim.z);
+            camera.lookAt([0, 0, 0]);
+
+            if (cylinderMesh) {
+              const currentRotation = cylinderMesh.rotation.y;
+              velocity = currentRotation - lastRotation;
+              lastRotation = currentRotation;
+
+              const inertiaFactor = 0.15;
+              const decayFactor = 0.92;
+              momentum = momentum * decayFactor + velocity * inertiaFactor;
+
+              const speed = Math.abs(velocity) * 100;
+              const isRotating = Math.abs(velocity) > 0.0001;
+
+              particles.forEach((particle) => {
+                const userData = particle.userData;
+                const targetOpacity = isRotating ? Math.min(speed * 3, 0.95) : 0;
+                const warmBoost = isRotating ? Math.min(speed * 1.4, 0.55) : 0;
+                const currentOpacity = particle.program.uniforms.uOpacity.value;
+                particle.program.uniforms.uOpacity.value =
+                  currentOpacity + (Math.min(targetOpacity + warmBoost, 0.95) - currentOpacity) * 0.14;
+
+                if (isRotating) {
+                  const rotationOffset = velocity * userData.speed * 1.5;
+                  userData.baseAngle += rotationOffset;
+
+                  const segments = particleConfig.segments;
+                  const positions = particle.geometry.attributes.position.data;
+
+                  for (let j = 0; j <= segments; j++) {
+                    const t = j / segments;
+                    const angle = userData.baseAngle + userData.angleSpan * t;
+                    const radiusWithSpeed = userData.radius;
+
+                    positions[j * 3] = Math.cos(angle) * radiusWithSpeed;
+                    positions[j * 3 + 1] = userData.baseY;
+                    positions[j * 3 + 2] = Math.sin(angle) * radiusWithSpeed;
+                  }
+
+                  particle.geometry.attributes.position.needsUpdate = true;
+                }
+              });
+            }
+
+            renderer.render({ scene, camera });
+          };
+          animate();
+
+          const autoplayState = { progress: 0 };
+          autoplayTween = window.gsap.to(autoplayState, {
+            progress: 1,
+            duration: 8,
+            ease: "none",
+            onUpdate: () => {
+              masterTimeline?.progress(autoplayState.progress);
+              const maxScroll = Math.max(0, scrollWrapper.offsetHeight - window.innerHeight);
+              window.scrollTo(0, maxScroll * autoplayState.progress);
+            },
+            onComplete: () => {
+              const maxScroll = Math.max(0, scrollWrapper.offsetHeight - window.innerHeight);
+              window.scrollTo(0, maxScroll);
+              unlockManualScroll();
+              syncTimelineWithScroll();
+
+              const menuPath = "get-started.html";
+              if (!window.location.pathname.endsWith(menuPath)) {
+                window.location.replace(menuPath);
+              }
+            },
+          });
+        };
+
+        const syncTimelineWithScroll = () => {
+          if (!masterTimeline) return;
+          if (autoplayTween?.isActive()) return;
+
+          const maxScroll = Math.max(0, scrollWrapper.offsetHeight - window.innerHeight);
+          const progress = maxScroll > 0 ? window.scrollY / maxScroll : 1;
+          masterTimeline.progress(window.gsap.utils.clamp(0, 1, progress));
+        };
+
+        window.addEventListener("scroll", syncTimelineWithScroll, { passive: true });
+
+        const tryFinalizeSceneSetup = () => {
+          if (loadedImages >= images.length) {
+            finalizeSceneSetup();
+          }
+        };
+
+        sceneSetupTimeoutId = window.setTimeout(() => {
+          finalizeSceneSetup();
+        }, 3500);
+
+        images.forEach((imageSrc, index) => {
+          const img = new Image();
+          img.crossOrigin = "anonymous";
+          img.onload = () => {
+            imageElements[index] = img;
+            loadedImages += 1;
+            tryFinalizeSceneSetup();
+          };
+          img.onerror = () => {
+            loadedImages += 1;
+            console.error("[cylinder-carousel] Failed to load image:", imageSrc);
+            tryFinalizeSceneSetup();
+          };
+          img.src = imageSrc;
+        });
+
+        window.addEventListener("beforeunload", () => {
+          if (sceneSetupTimeoutId !== null) {
+            window.clearTimeout(sceneSetupTimeoutId);
+          }
+          autoplayTween?.kill();
+          masterTimeline?.kill();
+          unlockManualScroll();
+          window.removeEventListener("scroll", syncTimelineWithScroll);
+          window.removeEventListener("resize", handleResize);
+          window.history.scrollRestoration = previousScrollRestoration;
+        });
+      };
+
+      initScene();
+    </script>
+  </body>
+</html>

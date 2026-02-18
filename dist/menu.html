@@ -1,0 +1,1550 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vojon Rosik - Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&family=Lora:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="page-common.css" />
+  <style>
+    :root {
+      --menu-ink: #3b2417;
+      --menu-muted: #6e4a32;
+      --menu-line: rgba(120, 78, 44, 0.2);
+      --menu-accent: #c4612f;
+      --menu-soft: rgba(255, 255, 255, 0.9);
+    }
+
+        body.menu-page {
+      background:
+        linear-gradient(180deg, #f8eddd 0%, #f4e6d3 40%, #f3e2c8 100%);
+      color: var(--menu-ink);
+    }
+
+    body.menu-page .page-shell {
+      max-width: 1120px;
+      margin: 36px auto 70px;
+      background: #fffdf9;
+      border: 1px solid rgba(185, 138, 96, 0.25);
+      padding: 44px 72px 64px;
+      box-shadow: 0 26px 60px rgba(71, 44, 26, 0.12);
+    }
+
+    .menu-title {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .menu-title h1 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.1rem, 4.2vw, 3.1rem);
+      color: #4b2a18;
+      letter-spacing: 0.02em;
+    }
+
+    .menu-title p {
+      margin: 8px 0 0;
+      color: #7a5438;
+      font-size: 0.95rem;
+    }
+
+    .menu-tabs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 26px;
+      padding: 18px 12px;
+      margin: 24px 0 30px;
+      border-top: 1px solid rgba(120, 78, 44, 0.2);
+      border-bottom: 1px solid rgba(120, 78, 44, 0.2);
+    }
+
+    .menu-tabs a {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.78rem;
+      color: #6f4a32;
+      padding: 6px 2px;
+      border-bottom: 2px solid transparent;
+      font-weight: 700;
+    }
+
+    .menu-tabs a.active {
+      color: #3b2417;
+      border-color: #c4612f;
+    }
+
+    .menu-tabs a:hover {
+      color: #3b2417;
+      border-color: #c4612f;
+    }
+
+    .menu-tabs a:focus-visible {
+      outline: 2px solid #c4612f;
+      outline-offset: 4px;
+    }
+
+    .menu-hero {
+      margin: 0 auto 34px;
+      border: 1px solid rgba(160, 112, 72, 0.22);
+      border-radius: 14px;
+      padding: 18px 20px;
+      background: #fff7ea;
+      box-shadow: none;
+      display: grid;
+      gap: 10px;
+      text-align: left;
+    }
+
+    .menu-hero h1 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    .menu-hero p {
+      margin: 0;
+      color: var(--menu-muted);
+      line-height: 1.7;
+      font-size: 0.96rem;
+    }
+
+    .menu-hero-actions {
+      display: flex;
+      justify-content: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .menu-hero-actions a {
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid rgba(125, 78, 43, 0.3);
+      background: #fff2da;
+      color: var(--menu-ink);
+    }
+
+    .menu-hero-actions .primary {
+      background: linear-gradient(135deg, #b45b2b, #d37a3a);
+      color: #fff8f0;
+      border-color: transparent;
+    }
+
+    .menu-note {
+      margin-top: 16px;
+      border: 1px dashed rgba(125, 78, 43, 0.35);
+      border-radius: 18px;
+      padding: 16px 18px;
+      background: rgba(255, 255, 255, 0.9);
+      display: grid;
+      gap: 6px;
+      text-align: left;
+    }
+
+    .menu-note strong {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.75rem;
+      color: var(--menu-muted);
+    }
+
+    .menu-grid {
+      margin: 22px auto 0;
+      display: grid;
+      gap: 28px;
+      max-width: 960px;
+    }
+
+    .menu-section {
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      overflow: visible;
+    }
+
+    .menu-section:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .menu-toggle {
+      width: 100%;
+      border: none;
+      background: transparent;
+      display: block;
+      text-align: left;
+      padding: 6px 0 18px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #a3562e;
+      cursor: default;
+      position: relative;
+    }
+
+    .menu-toggle span {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .menu-toggle i {
+      display: none;
+    }
+
+    .menu-toggle::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 6px;
+      height: 1px;
+      background: rgba(120, 78, 44, 0.35);
+    }
+
+    .menu-toggle::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 3px;
+      width: 36px;
+      height: 2px;
+      background: #c4612f;
+    }
+
+    .menu-toggle .bi-chevron-down {
+      display: none;
+    }
+
+    .bi-chevron-down.rotated {
+      transform: rotate(180deg);
+    }
+
+    .menu-panel {
+      display: grid;
+      gap: 14px;
+      padding: 8px 0 6px;
+    }
+
+    .menu-panel.open {
+      display: grid;
+    }
+
+    .menu-subtitle {
+      font-weight: 700;
+      color: var(--menu-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      margin-top: 6px;
+    }
+
+    .menu-items {
+      display: grid;
+      gap: 0;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(120, 78, 44, 0.22);
+    }
+
+    .menu-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .menu-item h4 {
+      margin: 0;
+      font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+      font-weight: 700;
+      color: #1f1b16;
+    }
+
+    .menu-item p {
+      margin: 6px 0 0;
+      color: #6b5a4a;
+      font-size: 0.93rem;
+      line-height: 1.55;
+      max-width: 520px;
+    }
+
+    .menu-price {
+      font-weight: 700;
+      color: var(--menu-ink);
+      white-space: nowrap;
+    }
+
+    .menu-floating {
+      position: fixed;
+      right: 16px;
+      bottom: 110px;
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #121212;
+      color: #fff5e9;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      z-index: 50;
+      box-shadow: 0 16px 24px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+    }
+
+    .menu-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(20, 14, 10, 0.45);
+      z-index: 80;
+      padding: 16px;
+    }
+
+    .menu-modal.open {
+      display: flex;
+    }
+
+    .menu-modal-card {
+      position: relative;
+      width: min(560px, 94vw);
+      background: #0f0f10;
+      color: #f5f0e6;
+      border-radius: 18px;
+      padding: 40px 16px 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      display: grid;
+      gap: 12px;
+      max-height: 78vh;
+    }
+
+    .menu-modal-pill {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .menu-modal-pill a {
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ff5c5c, #e63c3c);
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .menu-modal-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 4px 4px 0;
+    }
+
+    .menu-modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: transparent;
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .menu-modal-list {
+      overflow: auto;
+      padding-right: 6px;
+      display: grid;
+      gap: 8px;
+      max-height: 52vh;
+    }
+
+    .menu-modal-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      font-size: 0.95rem;
+    }
+
+    .menu-modal-item span:last-child {
+      color: #ffdbb1;
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      body.menu-page .page-shell {
+        margin: 24px 16px 50px;
+        padding: 28px 20px 46px;
+      }
+
+      .menu-tabs {
+        gap: 14px;
+      }
+
+      .menu-title p {
+        font-size: 0.9rem;
+      }
+
+      .menu-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body class="menu-page">
+  <header class="site-header" id="siteHeader">
+  <div class="header-shell">
+    <nav class="desktop-nav desktop-nav-left" aria-label="Primary left">
+      <img class="nav-font-mark" src="/Font.png" alt="Vojon Rosik">
+      <a href="get-started.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="menu.html">Menu</a>
+      <a href="blog.html">Blogs</a>
+    </nav>
+    <a class="brand" href="get-started.html" aria-label="Vojon Rosik Home">
+      <img src="/img/LOGO.png" alt="Vojon Rosik logo" />
+    </a>
+    <nav class="desktop-nav desktop-nav-right" aria-label="Primary right">
+      <a href="outlets.html">Outlets</a>
+      <a href="membership.html">Membership</a>
+      <a href="reservation.html">Reservation</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="mobile-font" href="get-started.html" aria-label="Vojon Rosik">
+      <img src="/Font.png" alt="Vojon Rosik" />
+    </a>
+    <div class="header-actions">
+      <button class="hamburger" id="menuToggle" type="button" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobileDrawer">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+  <div class="drawer-backdrop" data-close-drawer></div>
+  <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Navigation details panel">
+    <button class="drawer-close" type="button" aria-label="Close menu" data-close-drawer>&times;</button>
+    <nav class="drawer-nav" aria-label="Mobile navigation">
+  <a href="get-started.html" class="drawer-link">Home</a>
+  <a href="about.html" class="drawer-link">About</a>
+  <a href="menu.html" class="drawer-link">Menu</a>
+  <a href="blog.html" class="drawer-link">Blogs</a>
+  <a href="outlets.html" class="drawer-link">Outlets</a>
+  <a href="membership.html" class="drawer-link">Membership</a>
+  <a href="reservation.html" class="drawer-link">Reservation</a>
+  <a href="contact.html" class="drawer-link">Contact</a>
+</nav>
+  </div>
+</aside>
+  <main class="page-shell">
+
+    <section class="menu-title">
+      <h1>Our Menu</h1>
+      <p>Explore the full Vojon Rosik menu. Prices subject to change.</p>
+    </section>
+
+    <nav class="menu-tabs" id="menuTabs" aria-label="Menu categories"></nav>
+    <section class="menu-hero">
+      <h1>Vojon Rosik Restaurant Menu</h1>
+      <p>Handcrafted Bengali classics, signature thalis, and celebratory feasts. Explore the full menu below or download the PDF.</p>
+      <div class="menu-hero-actions">
+        <a class="primary" href="/Menu1.pdf" target="_blank" rel="noopener">View Menu PDF</a>
+        <a href="/Menu1.pdf" download>Download Menu</a>
+      </div>
+    </section>
+
+    ﻿<section class="menu-grid" id="menuGrid">
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-cup-hot"></i> Breakfast Combo</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div>
+            <div class="menu-subtitle">Veg</div>
+            <div class="menu-items">
+              <div class="menu-item"><div><h4>Laccha Paratha (2pcs) + Paneer Butter Masala</h4></div><div class="menu-price">349/-</div></div>
+              <div class="menu-item"><div><h4>Laccha Paratha (2pcs) + Malai Paneer</h4></div><div class="menu-price">249/-</div></div>
+              <div class="menu-item"><div><h4>Laccha Paratha (2pcs) + Kashmiri Aloor Dom</h4></div><div class="menu-price">149/-</div></div>
+              <div class="menu-item"><div><h4>Tandoori Roti (2pcs) + Cholar Dal</h4></div><div class="menu-price">119/-</div></div>
+              <div class="menu-item"><div><h4>Luchi (4pcs) + Cholar Dal</h4></div><div class="menu-price">99/-</div></div>
+              <div class="menu-item"><div><h4>Luchi (4pcs) + Aloor Dom</h4></div><div class="menu-price">99/-</div></div>
+              <div class="menu-item"><div><h4>Tandoori Roti (2pcs) + Aloor Dom</h4></div><div class="menu-price">99/-</div></div>
+            </div>
+          </div>
+          <div>
+            <div class="menu-subtitle">Non-Veg</div>
+            <div class="menu-items">
+              <div class="menu-item"><div><h4>Laccha Paratha (2pcs) + Mutton Kosha (2pcs)</h4></div><div class="menu-price">349/-</div></div>
+              <div class="menu-item"><div><h4>Laccha Paratha (2pcs) + Mutton Keema</h4></div><div class="menu-price">349/-</div></div>
+              <div class="menu-item"><div><h4>Luchi (4pcs) + Mutton Kosha (2pcs)</h4></div><div class="menu-price">349/-</div></div>
+              <div class="menu-item"><div><h4>Luchi (4pcs) + Mutton Keema</h4></div><div class="menu-price">349/-</div></div>
+              <div class="menu-item"><div><h4>Tandoori Roti (2pcs) + Mutton Keema</h4></div><div class="menu-price">299/-</div></div>
+              <div class="menu-item"><div><h4>Tandoori Roti (2pcs) + Chicken Kosha (2pcs)</h4></div><div class="menu-price">249/-</div></div>
+              <div class="menu-item"><div><h4>Laccha Paratha (2pcs) + Chicken Kosha (2pcs)</h4></div><div class="menu-price">249/-</div></div>
+              <div class="menu-item"><div><h4>Laccha Paratha (2pcs) + Chicken Bharta</h4></div><div class="menu-price">249/-</div></div>
+              <div class="menu-item"><div><h4>Luchi (4pcs) + Chicken Kosha (2pcs)</h4></div><div class="menu-price">249/-</div></div>
+              <div class="menu-item"><div><h4>Tandoori Roti (2pcs) + Dimer Kosha (2pcs)</h4></div><div class="menu-price">149/-</div></div>
+              <div class="menu-item"><div><h4>Laccha Paratha (2pcs) + Dimer Kosha (2pcs)</h4></div><div class="menu-price">149/-</div></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-droplet"></i> Soup</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Mutton Stew</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Stew (2pcs)</h4></div><div class="menu-price">349/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Hot &amp; Sour Soup</h4></div><div class="menu-price">299/-</div></div>
+            <div class="menu-item"><div><h4>Cream Chicken Soup</h4></div><div class="menu-price">259/-</div></div>
+            <div class="menu-item"><div><h4>Cream Mushroom Soup</h4></div><div class="menu-price">249/-</div></div>
+            <div class="menu-item"><div><h4>Mushroom Peppery Lemon Soup</h4></div><div class="menu-price">239/-</div></div>
+            <div class="menu-item"><div><h4>Veg Hot &amp; Sour Soup</h4></div><div class="menu-price">209/-</div></div>
+            <div class="menu-item"><div><h4>Sweet Corn Soup</h4></div><div class="menu-price">199/-</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-flower1"></i> Veg Starter</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Piyaji Postor Bora (4pcs)</h4></div><div class="menu-price">369/-</div></div>
+            <div class="menu-item"><div><h4>Postor Bora (4pcs)</h4></div><div class="menu-price">349/-</div></div>
+            <div class="menu-item"><div><h4>Chhanar Cutlet (2pcs)</h4></div><div class="menu-price">249/-</div></div>
+            <div class="menu-item"><div><h4>Paneer Pasanda (4pc)</h4></div><div class="menu-price">249/-</div></div>
+            <div class="menu-item"><div><h4>Paneer Pakora (4pc)</h4></div><div class="menu-price">219/-</div></div>
+            <div class="menu-item"><div><h4>Aam Ada Veg Chop (2pcs)</h4></div><div class="menu-price">199/-</div></div>
+            <div class="menu-item"><div><h4>Robibar Fulkoori Cutlet (2pcs)</h4></div><div class="menu-price">199/-</div></div>
+            <div class="menu-item"><div><h4>Mochar Chop (2pcs)</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Begun Bhaja (4pcs)</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Masala Beguni (2pcs)</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Panch Mesali Bhaja</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Kumro Fuler Bora (4pcs)</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Sojne Fuler Bora (4pcs)</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Gima Saager Bora (4pcs)</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>French Fries</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Vegetable Cutlet (2pcs)</h4></div><div class="menu-price">119/-</div></div>
+            <div class="menu-item"><div><h4>Jhuri Aloo Bhaja</h4></div><div class="menu-price">99/-</div></div>
+          </div>
+        </div>
+      </article>
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-egg-fried"></i> Non-Veg Starter</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-subtitle">Egg</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Egg Mutton Devil (2pcs)</h4></div><div class="menu-price">249/-</div></div>
+            <div class="menu-item"><div><h4>Egg Chingri Chop (2pcs)</h4></div><div class="menu-price">169/-</div></div>
+            <div class="menu-item"><div><h4>Egg Devil (2pcs)</h4></div><div class="menu-price">89/-</div></div>
+          </div>
+          <div class="menu-subtitle">Fish</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Boneless Ilish Paturi</h4></div><div class="menu-price">849/-</div></div>
+            <div class="menu-item"><div><h4>Ilish Machh Bhaja (1pc)</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Pomfret Machh Bhaja (1pc)</h4></div><div class="menu-price">359/-</div></div>
+            <div class="menu-item"><div><h4>Ilish Finger (4pcs)</h4></div><div class="menu-price">349/-</div></div>
+            <div class="menu-item"><div><h4>Kucho Chingri Piyaji (4pcs)</h4></div><div class="menu-price">349/-</div></div>
+            <div class="menu-item"><div><h4>Fish Kabiraji (1pc)</h4></div><div class="menu-price">249/-</div></div>
+            <div class="menu-item"><div><h4>Parshe Machh Bhaja (2pcs)</h4></div><div class="menu-price">249/-</div></div>
+            <div class="menu-item"><div><h4>Prawn Golden Fry (6pcs)</h4></div><div class="menu-price">249/-</div></div>
+            <div class="menu-item"><div><h4>Loitta Cutlet (2pcs)</h4></div><div class="menu-price">249/-</div></div>
+            <div class="menu-item"><div><h4>Fish Diamond Fry (Bhetki) (1pc)</h4></div><div class="menu-price">229/-</div></div>
+            <div class="menu-item"><div><h4>Fish Finger (Bhetki) (4pcs)</h4></div><div class="menu-price">229/-</div></div>
+            <div class="menu-item"><div><h4>Chingri Cutlet (1pc)</h4></div><div class="menu-price">229/-</div></div>
+            <div class="menu-item"><div><h4>Mocha Chingri Chop (2pcs)</h4></div><div class="menu-price">189/-</div></div>
+          </div>
+          <div class="menu-subtitle">Meat</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Mutton Panthras (4pc)</h4></div><div class="menu-price">249/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Cutlet Kabiraji (1pc)</h4></div><div class="menu-price">249/-</div></div>
+            <div class="menu-item"><div><h4>Gondoraj Chicken Fry (6pcs)</h4></div><div class="menu-price">249/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Pakora (6pcs)</h4></div><div class="menu-price">229/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Nuggets (8pcs)</h4></div><div class="menu-price">229/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Strips (6pcs)</h4></div><div class="menu-price">229/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Cutlet (1pc)</h4></div><div class="menu-price">229/-</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-fire"></i> Kebab, Tikka, Tandoori</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-subtitle">Veg</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Paneer Tikka Masala Kebab (6pcs)</h4></div><div class="menu-price">359/-</div></div>
+            <div class="menu-item"><div><h4>Chhanar Sheekh Kebab (6pcs)</h4></div><div class="menu-price">349/-</div></div>
+            <div class="menu-item"><div><h4>Paneer Tikka Kebab (6pcs)</h4></div><div class="menu-price">349/-</div></div>
+          </div>
+          <div class="menu-subtitle">Non-Veg</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Smoked Ilish (Boneless)</h4></div><div class="menu-price">1199/-</div></div>
+            <div class="menu-item"><div><h4>Gola Chingri Kebab (6pcs)</h4></div><div class="menu-price">899/-</div></div>
+            <div class="menu-item"><div><h4>Tandoori Chicken (Whole)</h4></div><div class="menu-price">849/-</div></div>
+            <div class="menu-item"><div><h4>Murgh Malai (Half) (6pcs)</h4></div><div class="menu-price">699/-</div></div>
+            <div class="menu-item"><div><h4>Tangri Chicken (6pcs)</h4></div><div class="menu-price">589/-</div></div>
+            <div class="menu-item"><div><h4>Mutton Sheekh Kebab (6pcs)</h4></div><div class="menu-price">589/-</div></div>
+            <div class="menu-item"><div><h4>Jeera Morich Roast Chicken (6pcs)</h4></div><div class="menu-price">489/-</div></div>
+            <div class="menu-item"><div><h4>Pomfret Tawa Fry (1pc)</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Tandoori Pomfret (1pc)</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Bhetki Machher Tikka (6pcs)</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Clavie Fish Tikka Kebab (6pcs)</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Sheekh Kebab (6pcs)</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Reshmi Kebab (6pcs)</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Hariyali Kebab (6pcs)</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Hussaini Murgh Kebab (6pcs)</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Murgh Malai Kebab (6pcs)</h4></div><div class="menu-price">449/-</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-basket"></i> Salad &amp; Raita</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Green Salad</h4></div><div class="menu-price">89/-</div></div>
+            <div class="menu-item"><div><h4>Onion Salad</h4></div><div class="menu-price">89/-</div></div>
+            <div class="menu-item"><div><h4>Cucumber Salad</h4></div><div class="menu-price">89/-</div></div>
+            <div class="menu-item"><div><h4>Mixed Raita</h4></div><div class="menu-price">79/-</div></div>
+            <div class="menu-item"><div><h4>Mint Raita</h4></div><div class="menu-price">89/-</div></div>
+          </div>
+        </div>
+      </article>
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-grid"></i> Thali Section</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-subtitle">Niramish Thali</div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div>
+                <h4>Vojon Rosik Bangali Special Niramish Thali</h4>
+                <p>(Basmati rice + Basanti Pulao / Veg Pulao + Shukto + Bhorta + Sona Moong Dal + Jhuri Aloo Bhaja + Day's Special Sabji + Aloo Posto + Day's Special Sabji + Chutney + Papad + Rosogolla + Ice Cream + Misti Doi)</p>
+              </div>
+              <div class="menu-price">499/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Special Niramish Thali</h4>
+                <p>(Basmati rice + Shukto + Bhorta + Sona Moong Dal + Jhuri Aloo Bhaja + Day's Special Sabji + Aloo Posto + Day's Special Sabji + Chutney + Papad + Rosogolla)</p>
+              </div>
+              <div class="menu-price">349/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Niramish Thali</h4>
+                <p>(Basmati rice + Sona Moong Dal + Day's Special Sabji + Salad + Chutney + Papad)</p>
+              </div>
+              <div class="menu-price">249/-</div>
+            </div>
+          </div>
+
+          <div class="menu-subtitle">Paneer Thali</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Vojon Rosik Bangali Special Paneer Thali</h4></div><div class="menu-price">549/-</div></div>
+            <div class="menu-item"><div><h4>Special Paneer Thali</h4></div><div class="menu-price">399/-</div></div>
+            <div class="menu-item"><div><h4>Paneer Thali</h4></div><div class="menu-price">299/-</div></div>
+            <div class="menu-item"><div><h4>Vojon Rosik Bangali Special Paneer Paturi Thali</h4></div><div class="menu-price">599/-</div></div>
+            <div class="menu-item"><div><h4>Special Paneer Paturi Thali</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Paneer Paturi Thali</h4></div><div class="menu-price">349/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Rui Machher Thali</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Vojon Rosik Bangali Special Rui Machher Thali</h4></div><div class="menu-price">549/-</div></div>
+            <div class="menu-item"><div><h4>Special Rui Machher Thali</h4></div><div class="menu-price">429/-</div></div>
+            <div class="menu-item"><div><h4>Rui Machher Thali</h4></div><div class="menu-price">329/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Katla Machher Thali</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Vojon Rosik Bangali Special Katla Machher Thali</h4></div><div class="menu-price">649/-</div></div>
+            <div class="menu-item"><div><h4>Special Katla Machher Thali</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Katla Machher Thali</h4></div><div class="menu-price">349/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Doi Katla Thali</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Vojon Rosik Bangali Special Doi Katla Thali</h4></div><div class="menu-price">649/-</div></div>
+            <div class="menu-item"><div><h4>Special Doi Katla Thali</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Doi Katla Thali</h4></div><div class="menu-price">349/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Katla Korma Thali</div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div>
+                <h4>Vojon Rosik Bangali Special Katla Korma Thali</h4>
+                <p>(Basmati rice + Basanti Pulao / Veg Pulao + Shukto + Bhorta + Sona Moong Dal + Jhuri Aloo Bhaja + Day's Special Sabji + Katla Machher Korma (1pc) + Salad + Chutney + Papad + Rosogolla + Ice Cream + Misti Doi)</p>
+              </div>
+              <div class="menu-price">699/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Special Katla Korma Thali</h4>
+                <p>(Basmati rice + Shukto + Bhorta + Sona Moong Dal + Jhuri Aloo Bhaja + Day's Special Sabji + Katla Korma (1pc) + Salad + Chutney + Papad + Rosogolla)</p>
+              </div>
+              <div class="menu-price">499/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Katla Korma Thali</h4>
+                <p>(Basmati rice + Sona Moong Dal + Day's Special Sabji + Katla Korma (1pc) + Salad + Chutney + Papad)</p>
+              </div>
+              <div class="menu-price">399/-</div>
+            </div>
+          </div>
+
+          <div class="menu-subtitle">Pabda Machher Thali</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Vojon Rosik Bangali Special Pabda Machher Thali</h4></div><div class="menu-price">649/-</div></div>
+            <div class="menu-item"><div><h4>Special Pabda Machher Thali</h4></div><div class="menu-price">489/-</div></div>
+            <div class="menu-item"><div><h4>Pabda Machher Thali</h4></div><div class="menu-price">429/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Bhetki Machher Thali</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Vojon Rosik Bangali Special Bhetki Machher Thali</h4></div><div class="menu-price">789/-</div></div>
+            <div class="menu-item"><div><h4>Special Bhetki Machher Thali</h4></div><div class="menu-price">629/-</div></div>
+            <div class="menu-item"><div><h4>Bhetki Machher Thali</h4></div><div class="menu-price">529/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Pomfret Machher Thali</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Vojon Rosik Bangali Special Pomfret Machher Thali</h4></div><div class="menu-price">899/-</div></div>
+            <div class="menu-item"><div><h4>Special Pomfret Machher Thali</h4></div><div class="menu-price">799/-</div></div>
+            <div class="menu-item"><div><h4>Pomfret Machher Thali</h4></div><div class="menu-price">699/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Parshe Machher Thali</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Vojon Rosik Bangali Special Parshe Machher Thali</h4></div><div class="menu-price">749/-</div></div>
+            <div class="menu-item"><div><h4>Special Parshe Machher Thali</h4></div><div class="menu-price">599/-</div></div>
+            <div class="menu-item"><div><h4>Shorse Parshe Thali</h4></div><div class="menu-price">499/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Chingri Machher Thali</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Vojon Rosik Bangali Special Chingri Machher Thali</h4></div><div class="menu-price">769/-</div></div>
+            <div class="menu-item"><div><h4>Special Chingri Machher Thali</h4></div><div class="menu-price">649/-</div></div>
+            <div class="menu-item"><div><h4>Chingri Machher Thali</h4></div><div class="menu-price">549/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Ilish Machher Thali</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Vojon Rosik Bangali Special Ilish Machher Thali</h4></div><div class="menu-price">1089/-</div></div>
+            <div class="menu-item"><div><h4>Special Ilish Machher Thali</h4></div><div class="menu-price">789/-</div></div>
+            <div class="menu-item"><div><h4>Ilish Machher Thali</h4></div><div class="menu-price">689/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Boneless Ilish Paturi Thali</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Vojon Rosik Bangali Special Boneless Ilish Paturi Thali</h4></div><div class="menu-price">1349/-</div></div>
+            <div class="menu-item"><div><h4>Boneless Ilish Paturi Thali</h4></div><div class="menu-price">1199/-</div></div>
+            <div class="menu-item"><div><h4>Boneless Ilish Paturi Thali (Half)</h4></div><div class="menu-price">1009/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Ilish Jeera Begun Doi Thali</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Vojon Rosik Bangali Special Boneless Ilish Jeera Begun Doi Thali</h4></div><div class="menu-price">1199/-</div></div>
+            <div class="menu-item"><div><h4>Special Chalkumro Ilish / Ilish Kalo Jeera Begun Doi Thali</h4></div><div class="menu-price">999/-</div></div>
+            <div class="menu-item"><div><h4>Chalkumro Ilish / Ilish Kalo Jeera Begun Doi Thali</h4></div><div class="menu-price">739/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Other Machher Thali</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Boal Machher Thali</h4></div><div class="menu-price">549/-</div></div>
+            <div class="menu-item"><div><h4>Aar Machher Thali</h4></div><div class="menu-price">549/-</div></div>
+            <div class="menu-item"><div><h4>Magur Machher Thali</h4></div><div class="menu-price">649/-</div></div>
+            <div class="menu-item"><div><h4>Koi Machher Thali</h4></div><div class="menu-price">549/-</div></div>
+            <div class="menu-item"><div><h4>Chitol Machher Thali</h4></div><div class="menu-price">649/-</div></div>
+            <div class="menu-item"><div><h4>Chitol Machh Muthiya Thali</h4></div><div class="menu-price">649/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Kankra Thali</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Special Kankra Thali</h4></div><div class="menu-price">799/-</div></div>
+            <div class="menu-item"><div><h4>Kankra Thali</h4></div><div class="menu-price">699/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Meat &amp; Egg Thali</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Vojon Rosik Bangali Special Chicken Thali</h4></div><div class="menu-price">599/-</div></div>
+            <div class="menu-item"><div><h4>Special Chicken Thali</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Thali</h4></div><div class="menu-price">349/-</div></div>
+            <div class="menu-item"><div><h4>Vojon Rosik Bangali Special Mutton Thali</h4></div><div class="menu-price">799/-</div></div>
+            <div class="menu-item"><div><h4>Special Mutton Thali</h4></div><div class="menu-price">649/-</div></div>
+            <div class="menu-item"><div><h4>Mutton Thali</h4></div><div class="menu-price">549/-</div></div>
+            <div class="menu-item"><div><h4>Special Dimer Thali</h4></div><div class="menu-price">299/-</div></div>
+            <div class="menu-item"><div><h4>Dimer Thali</h4></div><div class="menu-price">199/-</div></div>
+          </div>
+        </div>
+      </article>
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-award"></i> Mahabhoj Thali</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Part 1 (Shareable)</h4></div><div class="menu-price">2599/-</div></div>
+            <div class="menu-item"><div><h4>Part 2 (Shareable)</h4></div><div class="menu-price">2199/-</div></div>
+            <div class="menu-item"><div><h4>Part 3 (Shareable)</h4></div><div class="menu-price">1599/-</div></div>
+            <div class="menu-item"><div><h4>Part 4 (Shareable)</h4></div><div class="menu-price">1299/-</div></div>
+            <div class="menu-item"><div><h4>Part 5 (Shareable)</h4></div><div class="menu-price">999/-</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-basket2"></i> Combo Thali</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-subtitle">Paratha Combo Thali</div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div>
+                <h4>Paratha Paneer Combo</h4>
+                <p>Laccha Paratha (2pcs) + Malai Paneer + Salad + Rosogolla + Cold Drink</p>
+              </div>
+              <div class="menu-price">249/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Paratha Kashmiri Aloor Dom Combo</h4>
+                <p>Laccha Paratha (2pcs) + Kashmiri Aloor Dom + Salad + Rosogolla + Cold Drink</p>
+              </div>
+              <div class="menu-price">149/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Paratha Mutton Combo</h4>
+                <p>Laccha Paratha (2pcs) + Mutton Kosha (2pcs) + Salad + Rosogolla + Cold Drink</p>
+              </div>
+              <div class="menu-price">389/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Paratha Chicken Combo</h4>
+                <p>Laccha Paratha (2pcs) + Chicken Kosha (2pcs) + Salad + Rosogolla + Cold Drink</p>
+              </div>
+              <div class="menu-price">289/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Paratha Dim Combo</h4>
+                <p>Laccha Paratha (2pcs) + Dimer Kosha (2pcs) + Salad + Rosogolla + Cold Drink</p>
+              </div>
+              <div class="menu-price">189/-</div>
+            </div>
+          </div>
+
+          <div class="menu-subtitle">Pulao Combo Thali</div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div>
+                <h4>Pulao Paneer Combo</h4>
+                <p>Basmati Pulao / Veg Pulao + Malai Paneer + Salad + Rosogolla + Misti Doi</p>
+              </div>
+              <div class="menu-price">329/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Pulao Kashmiri Aloor Dom Combo</h4>
+                <p>Basmati Pulao / Veg Pulao + Kashmiri Aloor Dom + Salad + Rosogolla + Misti Doi</p>
+              </div>
+              <div class="menu-price">249/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Pulao Mutton Combo</h4>
+                <p>Basmati Pulao / Veg Pulao + Mutton Kosha (2pcs) + Salad + Rosogolla + Misti Doi</p>
+              </div>
+              <div class="menu-price">549/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Pulao Chicken Combo</h4>
+                <p>Basmati Pulao / Veg Pulao + Chicken Kosha (2pcs) + Salad + Rosogolla + Misti Doi</p>
+              </div>
+              <div class="menu-price">449/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Pulao Dim Combo</h4>
+                <p>Basmati Pulao / Veg Pulao + Dimer Kosha (2pcs) + Salad + Rosogolla + Misti Doi</p>
+              </div>
+              <div class="menu-price">329/-</div>
+            </div>
+          </div>
+
+          <div class="menu-subtitle">Khichuri Combo Thali</div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div>
+                <h4>Mutton Keema Khichuri Combo</h4>
+                <p>Mutton Keema Khichuri + Begun Bhaja (2pcs) + Chutney + Rosogolla</p>
+              </div>
+              <div class="menu-price">399/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Non-Veg Khichuri Combo</h4>
+                <p>Non-Veg Khichuri + Begun Bhaja (2pcs) + Chutney + Papad + Rosogolla</p>
+              </div>
+              <div class="menu-price">269/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Veg Khichuri Combo</h4>
+                <p>Veg Khichuri + Begun Bhaja (2pcs) + Chutney + Papad + Rosogolla</p>
+              </div>
+              <div class="menu-price">249/-</div>
+            </div>
+          </div>
+
+          <div class="menu-subtitle">Biryani Combo Thali</div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div>
+                <h4>VRB Special Mutton Biryani Combo</h4>
+                <p>Biryani Rice + Mutton (2pcs) + Egg (1pc) + Aloo (1pc) + Salad + Raita</p>
+              </div>
+              <div class="menu-price">649/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Special Mutton Biryani Combo</h4>
+                <p>Biryani Rice + Mutton (2pcs) + Egg (1pc) + Aloo (1pc) + Salad + Raita</p>
+              </div>
+              <div class="menu-price">499/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Mutton Biryani Combo</h4>
+                <p>Biryani Rice + Mutton (1pc) + Egg (1pc) + Aloo (1pc) + Salad</p>
+              </div>
+              <div class="menu-price">399/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>VRB Special Chicken Biryani Combo</h4>
+                <p>Biryani Rice + Chicken (2pcs) + Egg (1pc) + Aloo (1pc) + Salad + Raita</p>
+              </div>
+              <div class="menu-price">649/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Special Chicken Biryani Combo</h4>
+                <p>Biryani Rice + Chicken (2pcs) + Egg (1pc) + Aloo (1pc) + Salad + Raita</p>
+              </div>
+              <div class="menu-price">399/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Chicken Biryani Combo</h4>
+                <p>Biryani Rice + Chicken (1pc) + Egg (1pc) + Aloo (1pc) + Salad</p>
+              </div>
+              <div class="menu-price">299/-</div>
+            </div>
+            <div class="menu-item">
+              <div>
+                <h4>Veg Biryani Combo</h4>
+                <p>Biryani Rice + Paneer + Aloo (1pc) + Salad + Raita</p>
+              </div>
+              <div class="menu-price">249/-</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-calendar-heart"></i> Occasional Thali</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-items">
+            <div class="menu-item">
+              <div>
+                <h4>Aiburobhat</h4>
+                <p>Part 1 - Boron Dala + Fish Fry (1pc) + Luchi + Koraisutir Kochuri + Kashmiri Aloor Dom + Chholar Dal + Basanti Pulao + Veg Pulao + Jhuri Aloo Bhaja + Panch Rokom Bhaja + Machher Matha Diye Sona Moong Dal + Aloo Posto + Shukto + Katla Machher Kalia (1pc) + Chingri Malaikari (2pcs) + Bhetki Paturi (1pc) + Chicken Kosha (2pcs) + Mutton Kosha (2pcs) + Salad + Chutney + Papad + Rosogolla + Ice Cream + Misti Doi + Payesh + Gondhoraj Doi</p>
+              </div>
+              <div class="menu-price">2699/-</div>
+            </div>
+            <div class="menu-item"><div><h4>Aiburobhat Part 2</h4></div><div class="menu-price">2299/-</div></div>
+            <div class="menu-item"><div><h4>Aiburobhat Part 3</h4></div><div class="menu-price">1699/-</div></div>
+            <div class="menu-item"><div><h4>Aiburobhat Part 4</h4></div><div class="menu-price">1499/-</div></div>
+            <div class="menu-item">
+              <div>
+                <h4>Bhafota Thali</h4>
+                <p>Each includes traditional Bengali festive full-course meals including rice, dal, bhaja, fish, meat, sweets, doi, payesh, etc.</p>
+              </div>
+              <div class="menu-price">2649/-</div>
+            </div>
+            <div class="menu-item"><div><h4>Jonmodin Thali</h4></div><div class="menu-price">2649/-</div></div>
+            <div class="menu-item"><div><h4>Bibaho Barshiki Thali</h4></div><div class="menu-price">2649/-</div></div>
+            <div class="menu-item"><div><h4>Jamaisasthi Thali</h4></div><div class="menu-price">2649/-</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-bread-slice"></i> Indian Bread</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Machher Pur Bhora Kochuri (Non-Veg) (4pcs)</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Kabuli Roti (4pcs)</h4></div><div class="menu-price">79/-</div></div>
+            <div class="menu-item"><div><h4>Koraisutir Kochuri (4pcs)</h4></div><div class="menu-price">79/-</div></div>
+            <div class="menu-item"><div><h4>Phulko Luchi (4pcs)</h4></div><div class="menu-price">59/-</div></div>
+            <div class="menu-item"><div><h4>Butter Naan (1pc)</h4></div><div class="menu-price">49/-</div></div>
+            <div class="menu-item"><div><h4>Garlic Naan (1pc)</h4></div><div class="menu-price">49/-</div></div>
+            <div class="menu-item"><div><h4>Plain Naan (1pc)</h4></div><div class="menu-price">39/-</div></div>
+            <div class="menu-item"><div><h4>Laccha Paratha (1pc)</h4></div><div class="menu-price">35/-</div></div>
+            <div class="menu-item"><div><h4>Tandoori Roti (1pc)</h4></div><div class="menu-price">35/-</div></div>
+            <div class="menu-item"><div><h4>Plain Roti (2pcs)</h4></div><div class="menu-price">25/-</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-bowl-hot"></i> Rice &amp; Pulao</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-subtitle">Veg</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Moti Pulao</h4></div><div class="menu-price">269/-</div></div>
+            <div class="menu-item"><div><h4>Paneer Pulao</h4></div><div class="menu-price">229/-</div></div>
+            <div class="menu-item"><div><h4>Basanti Pulao</h4></div><div class="menu-price">219/-</div></div>
+            <div class="menu-item"><div><h4>Sada Pulao</h4></div><div class="menu-price">199/-</div></div>
+            <div class="menu-item"><div><h4>Veg Pulao</h4></div><div class="menu-price">199/-</div></div>
+            <div class="menu-item"><div><h4>Peas Pulao</h4></div><div class="menu-price">199/-</div></div>
+            <div class="menu-item"><div><h4>Jeera Rice</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Ghee Bhat</h4></div><div class="menu-price">119/-</div></div>
+            <div class="menu-item"><div><h4>Sugandhi Basmati Rice</h4></div><div class="menu-price">119/-</div></div>
+            <div class="menu-item"><div><h4>Basmati Rice</h4></div><div class="menu-price">99/-</div></div>
+            <div class="menu-item"><div><h4>Plain Rice</h4></div><div class="menu-price">89/-</div></div>
+          </div>
+          <div class="menu-subtitle">Non-Veg</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Dhakai Ilish Pulao (2pcs)</h4></div><div class="menu-price">899/-</div></div>
+            <div class="menu-item"><div><h4>Dhakai Mutton Pulao (2pcs)</h4></div><div class="menu-price">699/-</div></div>
+            <div class="menu-item"><div><h4>Bangladeshi Morog Pulao (6pcs)</h4></div><div class="menu-price">599/-</div></div>
+            <div class="menu-item"><div><h4>Dhakai Chingri Pulao</h4></div><div class="menu-price">299/-</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-droplet-half"></i> Dal &amp; Tadka</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-subtitle">Veg</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Dal Mohini</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Mouri Ada Bata Diye Musur Dal</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Chholar Dal</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Dal Fry</h4></div><div class="menu-price">119/-</div></div>
+            <div class="menu-item"><div><h4>Masala Moong Dal</h4></div><div class="menu-price">99/-</div></div>
+            <div class="menu-item"><div><h4>Bhaja Moong Dal Motorshuti Diye</h4></div><div class="menu-price">99/-</div></div>
+            <div class="menu-item"><div><h4>Kacha Aamer Tok Dal</h4></div><div class="menu-price">89/-</div></div>
+            <div class="menu-item"><div><h4>Masoor Dal</h4></div><div class="menu-price">89/-</div></div>
+            <div class="menu-item"><div><h4>Sona Moong Dal</h4></div><div class="menu-price">89/-</div></div>
+            <div class="menu-item"><div><h4>Biulir Dal</h4></div><div class="menu-price">79/-</div></div>
+          </div>
+          <div class="menu-subtitle">Non-Veg</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Dal Mutton (2pcs)</h4></div><div class="menu-price">459/-</div></div>
+            <div class="menu-item"><div><h4>Chingri Diye Biulir Dal</h4></div><div class="menu-price">249/-</div></div>
+            <div class="menu-item"><div><h4>Chingri Machh Diye Sona Moong Dal</h4></div><div class="menu-price">199/-</div></div>
+            <div class="menu-item"><div><h4>Machher Matha Diye Moong Dal</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Chingri Diye Masoor Dal</h4></div><div class="menu-price">139/-</div></div>
+            <div class="menu-item"><div><h4>Egg Chicken Dal Tadka</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Egg Dal Tadka</h4></div><div class="menu-price">89/-</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-clock-history"></i> Purono Diner Bhoj</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Potol Posto</h4></div><div class="menu-price">199/-</div></div>
+            <div class="menu-item"><div><h4>Jhinge Posto</h4></div><div class="menu-price">199/-</div></div>
+            <div class="menu-item"><div><h4>Chhanar Pur Bhora Potoler Dorma</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Chhanar Dalna</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Doi Begun</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Kochur Loti Shorshe Posto Diye</h4></div><div class="menu-price">119/-</div></div>
+            <div class="menu-item"><div><h4>Begun Basanti</h4></div><div class="menu-price">99/-</div></div>
+            <div class="menu-item"><div><h4>Labra</h4></div><div class="menu-price">99/-</div></div>
+            <div class="menu-item"><div><h4>Fulko Aloor Korma</h4></div><div class="menu-price">99/-</div></div>
+          </div>
+        </div>
+      </article>
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-fork-knife"></i> Main Course Dishes</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-subtitle">Veg Gravy</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Aam Dhanrish</h4></div><div class="menu-price">249/-</div></div>
+            <div class="menu-item"><div><h4>Posto Bhapa</h4></div><div class="menu-price">249/-</div></div>
+            <div class="menu-item"><div><h4>Aloo Peyaj Posto</h4></div><div class="menu-price">229/-</div></div>
+            <div class="menu-item"><div><h4>Mochar Paturi</h4></div><div class="menu-price">225/-</div></div>
+            <div class="menu-item"><div><h4>Chhanar Kalia</h4></div><div class="menu-price">225/-</div></div>
+            <div class="menu-item"><div><h4>Begun Basanti</h4></div><div class="menu-price">219/-</div></div>
+            <div class="menu-item"><div><h4>Dhokar Dalna</h4></div><div class="menu-price">199/-</div></div>
+            <div class="menu-item"><div><h4>Chhanar Kofta Curry</h4></div><div class="menu-price">199/-</div></div>
+            <div class="menu-item"><div><h4>Aloo Posto</h4></div><div class="menu-price">199/-</div></div>
+            <div class="menu-item"><div><h4>Doi Potol</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Enchor er Dalna</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Kochkolar Kofta</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Potoler Dorma</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Aloo Potoler Kosha</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Aloo Fulko Kosha</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Enchor er Kosha</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Kaju Kismis Diye Mochar Ghonto</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Panchmesali Sabji</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Dudh Shukto</h4></div><div class="menu-price">119/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Paneer Gravy</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Paneer Paturi</h4></div><div class="menu-price">269/-</div></div>
+            <div class="menu-item"><div><h4>Paneer Butter Masala</h4></div><div class="menu-price">249/-</div></div>
+            <div class="menu-item"><div><h4>Paneer Do Pyaza</h4></div><div class="menu-price">239/-</div></div>
+            <div class="menu-item"><div><h4>Paneer Malaicurry</h4></div><div class="menu-price">229/-</div></div>
+            <div class="menu-item"><div><h4>Kadai Paneer</h4></div><div class="menu-price">229/-</div></div>
+            <div class="menu-item"><div><h4>Sahi Paneer</h4></div><div class="menu-price">229/-</div></div>
+            <div class="menu-item"><div><h4>Palak Paneer</h4></div><div class="menu-price">229/-</div></div>
+            <div class="menu-item"><div><h4>Paneer Aloo Fulko Rosh</h4></div><div class="menu-price">229/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Mushroom Gravy</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Mushroom Do Pyaza</h4></div><div class="menu-price">169/-</div></div>
+            <div class="menu-item"><div><h4>Kadai Mushroom</h4></div><div class="menu-price">169/-</div></div>
+            <div class="menu-item"><div><h4>Mushroom Jafra Matar</h4></div><div class="menu-price">159/-</div></div>
+            <div class="menu-item"><div><h4>Mushroom Masala</h4></div><div class="menu-price">159/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Fish</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Boneless Ilish Paturi (1pc)</h4></div><div class="menu-price">849/-</div></div>
+            <div class="menu-item"><div><h4>Bhapa Ilish (Boneless)</h4></div><div class="menu-price">829/-</div></div>
+            <div class="menu-item"><div><h4>Daab Bhapa Ilish (2pcs)</h4></div><div class="menu-price">819/-</div></div>
+            <div class="menu-item"><div><h4>Ilish Tel Jhal (1pc)</h4></div><div class="menu-price">799/-</div></div>
+            <div class="menu-item"><div><h4>Doi Ilish (2pcs)</h4></div><div class="menu-price">750/-</div></div>
+            <div class="menu-item"><div><h4>Kalo Jeera Ilish Jhal (2pcs)</h4></div><div class="menu-price">679/-</div></div>
+            <div class="menu-item"><div><h4>Ilish Kalo Jeera Begun Diye (1pc)</h4></div><div class="menu-price">679/-</div></div>
+            <div class="menu-item"><div><h4>Daab Chingri (2pcs)</h4></div><div class="menu-price">649/-</div></div>
+            <div class="menu-item"><div><h4>Bhetki Jhal (1pc)</h4></div><div class="menu-price">649/-</div></div>
+            <div class="menu-item"><div><h4>Chalkumro Ilish</h4></div><div class="menu-price">649/-</div></div>
+            <div class="menu-item"><div><h4>Pomfret Machher Jhol Aloo Diye</h4></div><div class="menu-price">629/-</div></div>
+            <div class="menu-item"><div><h4>Bhapa Chingri</h4></div><div class="menu-price">599/-</div></div>
+            <div class="menu-item"><div><h4>Kankra Chingri Bhapa</h4></div><div class="menu-price">499/-</div></div>
+            <div class="menu-item"><div><h4>Aloo Chingri Posto</h4></div><div class="menu-price">499/-</div></div>
+            <div class="menu-item"><div><h4>Begun Bori Diye Ilish Machh (1pc)</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Shorshe Ilish (1pc)</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Doi Bhetki (1pc)</h4></div><div class="menu-price">419/-</div></div>
+            <div class="menu-item"><div><h4>Goti Kochu Chingri</h4></div><div class="menu-price">409/-</div></div>
+            <div class="menu-item"><div><h4>Chingri Machher Malaicurry (2pcs)</h4></div><div class="menu-price">399/-</div></div>
+            <div class="menu-item"><div><h4>Masala Chingri (2pcs)</h4></div><div class="menu-price">399/-</div></div>
+            <div class="menu-item"><div><h4>Bhetki Aloo Fulko Rosh</h4></div><div class="menu-price">399/-</div></div>
+            <div class="menu-item"><div><h4>Machher Anchar Bhapa (Katla) (2pcs)</h4></div><div class="menu-price">399/-</div></div>
+            <div class="menu-item"><div><h4>Chingri Stuffed Potol Posto</h4></div><div class="menu-price">379/-</div></div>
+            <div class="menu-item"><div><h4>Pomfret Machher Shorshe Posto Jhal (1pc)</h4></div><div class="menu-price">349/-</div></div>
+            <div class="menu-item"><div><h4>Shorshe Parshe Jhal (2pcs)</h4></div><div class="menu-price">349/-</div></div>
+            <div class="menu-item"><div><h4>Kankra Masala</h4></div><div class="menu-price">329/-</div></div>
+            <div class="menu-item"><div><h4>Kochu Pata Diye Chingri Bhapa</h4></div><div class="menu-price">299/-</div></div>
+            <div class="menu-item"><div><h4>Koi Machher Jhol Aloo Diye (1pc)</h4></div><div class="menu-price">299/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Chicken</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Putli Bhapa Murgi</h4></div><div class="menu-price">499/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Chaap (2pcs)</h4></div><div class="menu-price">459/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Sahi Korma</h4></div><div class="menu-price">459/-</div></div>
+            <div class="menu-item"><div><h4>Lanka Diye Bhapa Murgi</h4></div><div class="menu-price">419/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Dak Bungalow (2pcs)</h4></div><div class="menu-price">329/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Morich Masala (2pcs)</h4></div><div class="menu-price">329/-</div></div>
+            <div class="menu-item"><div><h4>Kadai Chicken (2pcs)</h4></div><div class="menu-price">329/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Do Pyaza (2pcs)</h4></div><div class="menu-price">329/-</div></div>
+            <div class="menu-item"><div><h4>Malaidar Murgh</h4></div><div class="menu-price">329/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Kosha (2pcs)</h4></div><div class="menu-price">299/-</div></div>
+            <div class="menu-item"><div><h4>Doi Chicken (2pcs)</h4></div><div class="menu-price">299/-</div></div>
+            <div class="menu-item"><div><h4>Murgir Lal Jhol Aloo Diye (2pcs)</h4></div><div class="menu-price">299/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Butter Masala (2pcs)</h4></div><div class="menu-price">299/-</div></div>
+            <div class="menu-item"><div><h4>Chicken Bharta</h4></div><div class="menu-price">249/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Mutton</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Mutton Sahi Korma</h4></div><div class="menu-price">559/-</div></div>
+            <div class="menu-item"><div><h4>Mutton Chaap (2pcs)</h4></div><div class="menu-price">519/-</div></div>
+            <div class="menu-item"><div><h4>Mutton Dak Bungalow (2pcs)</h4></div><div class="menu-price">499/-</div></div>
+            <div class="menu-item"><div><h4>Kacha Lanka Mutton (2pcs)</h4></div><div class="menu-price">499/-</div></div>
+            <div class="menu-item"><div><h4>Mutton Kosha (2pcs)</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Khasir Mangser Lal Jhol Aloo Diye (2pcs)</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Mutton Kala Bhuna (2pcs)</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Mutton Do Pyaza (2pcs)</h4></div><div class="menu-price">449/-</div></div>
+            <div class="menu-item"><div><h4>Mutton Keema</h4></div><div class="menu-price">349/-</div></div>
+          </div>
+
+          <div class="menu-subtitle">Egg</div>
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Dimer Korma (2pcs)</h4></div><div class="menu-price">189/-</div></div>
+            <div class="menu-item"><div><h4>Dimer Dalna (2pcs)</h4></div><div class="menu-price">189/-</div></div>
+            <div class="menu-item"><div><h4>Dimer Bhapa (2pcs)</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Dimer Pocher Jhal (2pcs)</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Dimer Omelette Curry (2pcs)</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Dimer Kosha (2pcs)</h4></div><div class="menu-price">119/-</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-cup-straw"></i> Mocktail &amp; Drinks</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Vojon Rosik Bangali Special Mocktail</h4></div><div class="menu-price">209/-</div></div>
+            <div class="menu-item"><div><h4>Raspberry Mojito</h4></div><div class="menu-price">189/-</div></div>
+            <div class="menu-item"><div><h4>Orange Mojito</h4></div><div class="menu-price">189/-</div></div>
+            <div class="menu-item"><div><h4>Pineapple Blue</h4></div><div class="menu-price">189/-</div></div>
+            <div class="menu-item"><div><h4>Orange Punch</h4></div><div class="menu-price">189/-</div></div>
+            <div class="menu-item"><div><h4>Cranberry Lemonade</h4></div><div class="menu-price">189/-</div></div>
+            <div class="menu-item"><div><h4>Blueberry Lemonade</h4></div><div class="menu-price">189/-</div></div>
+            <div class="menu-item"><div><h4>Kacha Aam Margarita</h4></div><div class="menu-price">189/-</div></div>
+            <div class="menu-item"><div><h4>Spicy Guava Martini</h4></div><div class="menu-price">189/-</div></div>
+            <div class="menu-item"><div><h4>Minty Green Apple</h4></div><div class="menu-price">189/-</div></div>
+            <div class="menu-item"><div><h4>Minty Watermelon</h4></div><div class="menu-price">189/-</div></div>
+            <div class="menu-item"><div><h4>Virgin Pina Colada</h4></div><div class="menu-price">159/-</div></div>
+            <div class="menu-item"><div><h4>Kiwi Blast</h4></div><div class="menu-price">159/-</div></div>
+            <div class="menu-item"><div><h4>Basil Blueberry Limeade</h4></div><div class="menu-price">159/-</div></div>
+            <div class="menu-item"><div><h4>Blue Lagoon</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Virgin Mojito</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Mango Mojito</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Fresh Lime Soda</h4></div><div class="menu-price">99/-</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-cup"></i> Fresh Juice &amp; Lassi</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Orange Juice</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Pineapple Juice</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Watermelon Juice</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Anarosh Pora Sorbot</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Gondhoraj Doi er Ghol</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Badam Lassi</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Keshar Lassi</h4></div><div class="menu-price">129/-</div></div>
+            <div class="menu-item"><div><h4>Mango Lassi</h4></div><div class="menu-price">119/-</div></div>
+            <div class="menu-item"><div><h4>Lichu Sorbot</h4></div><div class="menu-price">109/-</div></div>
+            <div class="menu-item"><div><h4>Aam Panna</h4></div><div class="menu-price">109/-</div></div>
+            <div class="menu-item"><div><h4>Masala Lassi</h4></div><div class="menu-price">109/-</div></div>
+            <div class="menu-item"><div><h4>Sweet Lassi</h4></div><div class="menu-price">99/-</div></div>
+            <div class="menu-item"><div><h4>Salted Lassi</h4></div><div class="menu-price">99/-</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-cake2"></i> Misti &amp; Chutney</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Mushroom Pati Sapta (2pcs)</h4></div><div class="menu-price">259/-</div></div>
+            <div class="menu-item"><div><h4>Daab Bhapa Sandesh (2pcs)</h4></div><div class="menu-price">199/-</div></div>
+            <div class="menu-item"><div><h4>Payesh</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Rosomalai</h4></div><div class="menu-price">149/-</div></div>
+            <div class="menu-item"><div><h4>Khejur Aamshotto Chutney</h4></div><div class="menu-price">119/-</div></div>
+            <div class="menu-item"><div><h4>Anarosher Chutney</h4></div><div class="menu-price">119/-</div></div>
+            <div class="menu-item"><div><h4>Baked Rosogolla (2pcs)</h4></div><div class="menu-price">99/-</div></div>
+            <div class="menu-item"><div><h4>Aamer Chutney</h4></div><div class="menu-price">89/-</div></div>
+            <div class="menu-item"><div><h4>Papad Basket (5pcs)</h4></div><div class="menu-price">89/-</div></div>
+            <div class="menu-item"><div><h4>Makha Sandesh</h4></div><div class="menu-price">79/-</div></div>
+            <div class="menu-item"><div><h4>Hot Gulab Jamun (2pcs)</h4></div><div class="menu-price">69/-</div></div>
+            <div class="menu-item"><div><h4>Nolen Gurer Misti Doi</h4></div><div class="menu-price">69/-</div></div>
+            <div class="menu-item"><div><h4>Firni</h4></div><div class="menu-price">59/-</div></div>
+            <div class="menu-item"><div><h4>Aam Doi</h4></div><div class="menu-price">59/-</div></div>
+            <div class="menu-item"><div><h4>Misti Doi</h4></div><div class="menu-price">49/-</div></div>
+            <div class="menu-item"><div><h4>Rosogolla (2pcs)</h4></div><div class="menu-price">49/-</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-section" data-menu-section>
+        <button class="menu-toggle" type="button">
+          <span><i class="bi bi-snow"></i> Ice Cream</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="menu-panel">
+          <div class="menu-items">
+            <div class="menu-item"><div><h4>Chocolate (2 Scoops)</h4></div><div class="menu-price">99/-</div></div>
+            <div class="menu-item"><div><h4>Strawberry (2 Scoops)</h4></div><div class="menu-price">89/-</div></div>
+            <div class="menu-item"><div><h4>Butter Scotch (2 Scoops)</h4></div><div class="menu-price">79/-</div></div>
+            <div class="menu-item"><div><h4>Vanilla (2 Scoops)</h4></div><div class="menu-price">69/-</div></div>
+            <div class="menu-item"><div><h4>Mango (2 Scoops)</h4></div><div class="menu-price">69/-</div></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+  </main>
+
+  <button class="menu-floating" type="button" id="menuQuickOpen">Menu</button>
+  <div class="menu-modal" id="menuModal" aria-hidden="true">
+    <div class="menu-modal-card" role="dialog" aria-modal="true" aria-label="Menu quick list">
+      <div class="menu-modal-pill"><a href="/Menu1.pdf" target="_blank" rel="noopener">View Menu PDF</a></div>
+      <div class="menu-modal-top">
+        <strong>Quick Menu</strong>
+        <button class="menu-modal-close" type="button" aria-label="Close menu">&times;</button>
+      </div>
+      <div class="menu-modal-list">
+        <div class="menu-modal-item"><span>Breakfast Combo</span><span>18</span></div>
+        <div class="menu-modal-item"><span>Soup</span><span>8</span></div>
+        <div class="menu-modal-item"><span>Veg Starter</span><span>17</span></div>
+        <div class="menu-modal-item"><span>Non-Veg Starter</span><span>23</span></div>
+        <div class="menu-modal-item"><span>Kebab / Tikka / Tandoori</span><span>18</span></div>
+        <div class="menu-modal-item"><span>Salad &amp; Raita</span><span>5</span></div>
+        <div class="menu-modal-item"><span>Thali Section</span><span>Extensive</span></div>
+        <div class="menu-modal-item"><span>Mahabhoj Thali</span><span>5</span></div>
+        <div class="menu-modal-item"><span>Combo Thali</span><span>20</span></div>
+        <div class="menu-modal-item"><span>Occasional Thali</span><span>8</span></div>
+        <div class="menu-modal-item"><span>Indian Bread</span><span>10</span></div>
+        <div class="menu-modal-item"><span>Rice &amp; Pulao</span><span>15</span></div>
+        <div class="menu-modal-item"><span>Dal &amp; Tadka</span><span>17</span></div>
+        <div class="menu-modal-item"><span>Purono Diner Bhoj</span><span>9</span></div>
+        <div class="menu-modal-item"><span>Main Course Dishes</span><span>Multiple</span></div>
+        <div class="menu-modal-item"><span>Mocktail &amp; Drinks</span><span>18</span></div>
+        <div class="menu-modal-item"><span>Fresh Juice &amp; Lassi</span><span>13</span></div>
+        <div class="menu-modal-item"><span>Misti &amp; Chutney</span><span>16</span></div>
+        <div class="menu-modal-item"><span>Ice Cream</span><span>5</span></div>
+      </div>
+    </div>
+  </div>
+  <footer class="site-footer rich-footer">
+      <div class="footer-main">
+        <div class="footer-col footer-brand">
+          <img src="/Font.png" alt="Vojon Rosik wordmark" />
+          <h3>Best Family Bengali Restaurants In Kolkata Is Vojon Rosik Restaurant Pvt. Ltd</h3>
+          <p>Vojon Rosik Restaurant Pvt Ltd is one of the best family Bengali restaurants in Kolkata. We honor Bengal's rich flavors through heartfelt hospitality and authentic cuisine.</p>
+          <a class="footer-help-btn" href="tel:+919830024888">How can I help you ?</a>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <a href="about.html">About</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="refund-policy.html">Refund Policy</a>
+          <a href="terms-conditions.html">Terms &amp; Conditions</a>
+        </div>
+        <div class="footer-col">
+          <h4>Other</h4>
+          <a href="menu.html">Menu</a>
+          <a href="faqs.html">FAQs</a>
+          <a href="help-contact.html">Help &amp; Contact us</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="reservation.html">Reservation</a>
+          <a href="blog.html">Blogs</a>
+        </div>
+        <div class="footer-col footer-contact">
+          <h4>Help &amp; Contact us</h4>
+          <a href="tel:+919830024888">+919830024888</a>
+          <a href="mailto:vojonrosikbangali1@gmail.com">vojonrosikbangali1@gmail.com</a>
+          <div class="footer-socials">
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      <img class="footer-mandala footer-mandala-right" src="/mandala.png" alt="" aria-hidden="true" />
+      <div class="footer-bottom">
+        <p>Copyright &copy; 2026. All Rights Reserved.</p>
+      </div>
+    </footer>
+  <script src="page-common.js" defer></script>
+  <script>
+    (function () {
+      const toggles = document.querySelectorAll('.menu-toggle');
+      toggles.forEach((btn) => {
+        const panel = btn.nextElementSibling;
+        if (panel) {
+          panel.classList.add('open');
+        }
+        btn.setAttribute('aria-expanded', 'true');
+      });
+
+      const quickBtn = document.getElementById('menuQuickOpen');
+      const modal = document.getElementById('menuModal');
+      const closeBtn = document.querySelector('.menu-modal-close');
+      if (quickBtn && modal) {
+        quickBtn.addEventListener('click', () => {
+          modal.classList.add('open');
+          modal.setAttribute('aria-hidden', 'false');
+        });
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+          }
+        });
+      }
+      if (closeBtn && modal) {
+        closeBtn.addEventListener('click', () => {
+          modal.classList.remove('open');
+          modal.setAttribute('aria-hidden', 'true');
+        });
+      }
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal) {
+          modal.classList.remove('open');
+          modal.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      const tabs = document.getElementById('menuTabs');
+      const sections = Array.from(document.querySelectorAll('[data-menu-section]'));
+      if (!tabs || sections.length === 0) return;
+
+      const slugify = (text) => text
+        .toLowerCase()
+        .replace(/&/g, 'and')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+
+      const getTitle = (section) => {
+        const heading = section.querySelector('.menu-toggle span');
+        return heading ? heading.textContent.trim() : 'Menu';
+      };
+
+      const tabItems = [{ id: 'all', label: 'All' }];
+
+      sections.forEach((section) => {
+        const title = getTitle(section);
+        const id = slugify(title) || `menu-${sections.indexOf(section) + 1}`;
+        section.id = id;
+        tabItems.push({ id, label: title });
+      });
+
+      tabs.innerHTML = tabItems.map((tab, idx) => (
+        `<a href="#${tab.id}" class="${idx === 0 ? 'active' : ''}" data-tab="${tab.id}">${tab.label}</a>`
+      )).join('');
+
+      const setActive = (id) => {
+        sections.forEach((section) => {
+          section.style.display = (id === 'all' || section.id === id) ? '' : 'none';
+        });
+        tabs.querySelectorAll('a').forEach((link) => {
+          link.classList.toggle('active', link.dataset.tab === id);
+        });
+      };
+
+      tabs.addEventListener('click', (e) => {
+        const link = e.target.closest('a[data-tab]');
+        if (!link) return;
+        e.preventDefault();
+        const id = link.dataset.tab;
+        setActive(id);
+        if (id === 'all') {
+          history.replaceState(null, '', '#all');
+          return;
+        }
+        history.replaceState(null, '', `#${id}`);
+        const target = document.getElementById(id);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+
+      const initial = (location.hash || '#all').replace('#', '');
+      if (tabItems.some((tab) => tab.id === initial)) {
+        setActive(initial);
+      } else {
+        setActive('all');
+      }
+    })();
+  </script>
+</body>
+</html>
+
+
+
+
+

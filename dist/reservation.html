@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vojon Rosik - Reservation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&family=Lora:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="get-started-home.css" />
+  <link rel="stylesheet" href="reservation.css" />
+  <script src="page-common.js" defer></script>
+  <script src="get-started-home.js" defer></script>
+  <script src="reservation.js" defer></script>
+</head>
+<body class="home-page reservation-page">
+  <header class="site-header" id="siteHeader">
+    <div class="header-shell">
+      <nav class="desktop-nav desktop-nav-left" aria-label="Primary left">
+        <img class="nav-font-mark" src="/Font.png" alt="Vojon Rosik">
+        <a href="get-started.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="menu.html">Menu</a>
+        <a href="blog.html">Blogs</a>
+      </nav>
+
+      <a class="brand" href="get-started.html" aria-label="Vojon Rosik Home">
+        <img src="/img/LOGO.png" alt="Vojon Rosik logo" />
+      </a>
+
+      <nav class="desktop-nav desktop-nav-right" aria-label="Primary right">
+        <a href="outlets.html">Outlets</a>
+        <a href="membership.html">Membership</a>
+        <a href="reservation.html">Reservation</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <a class="mobile-font" href="get-started.html" aria-label="Vojon Rosik">
+        <img src="/Font.png" alt="Vojon Rosik" />
+      </a>
+
+      <div class="header-actions">
+        <button class="hamburger" id="menuToggle" type="button" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobileDrawer">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="drawer-backdrop" data-close-drawer></div>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Navigation details panel">
+      <button class="drawer-close" type="button" aria-label="Close menu" data-close-drawer>&times;</button>
+      <nav class="drawer-nav" aria-label="Mobile navigation">
+  <a href="get-started.html" class="drawer-link">Home</a>
+  <a href="about.html" class="drawer-link">About</a>
+  <a href="menu.html" class="drawer-link">Menu</a>
+  <a href="blog.html" class="drawer-link">Blogs</a>
+  <a href="outlets.html" class="drawer-link">Outlets</a>
+  <a href="membership.html" class="drawer-link">Membership</a>
+  <a href="reservation.html" class="drawer-link">Reservation</a>
+  <a href="contact.html" class="drawer-link">Contact</a>
+</nav>
+      <div class="drawer-info">
+        <h3>Help &amp; Contact us</h3>
+        <a class="drawer-contact-link" href="tel:+919830024888">+919830024888</a>
+        <a class="drawer-contact-link" href="mailto:vojonrosikbangali1@gmail.com">vojonrosikbangali1@gmail.com</a>
+        <div class="drawer-socials">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="drawer-visit">
+        <h3>Visit Us</h3>
+        <p>Open: 11:30 AM - 11:00 PM</p>
+        <p>Vojon Rosik Restaurant, Kolkata</p>
+        <p class="booking-label">Booking Request</p>
+        <a href="tel:+919830024888">+919830024888</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="reservation-main">
+    <section class="reservation-shell">
+      <article class="reservation-intro">
+        <p class="intro-kicker">Book Your Table</p>
+        <h1>Reservation Panel</h1>
+        <p>Fill the form and submit your booking request. We forward it directly to <strong>vojonrosikbangali1@gmail.com</strong>.</p>
+        <ul class="intro-points">
+          <li><i class="bi bi-check-circle"></i> Instant reservation capture</li>
+          <li><i class="bi bi-check-circle"></i> Email notification to restaurant admin</li>
+          <li><i class="bi bi-check-circle"></i> Includes contact details and instructions</li>
+        </ul>
+      </article>
+
+      <article class="reservation-form-wrap">
+        <form id="reservationForm" class="reservation-form" action="https://formspree.io/f/maqdeqdk" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="New Reservation Request - Vojon Rosik">
+          <input type="hidden" name="_template" value="table">
+          <div class="form-grid">
+            <label>
+              Full Name
+              <input type="text" name="fullName" required maxlength="120" placeholder="Enter full name" />
+            </label>
+
+            <label>
+              Email Address
+              <input type="email" name="email" required maxlength="120" placeholder="name@email.com" />
+            </label>
+
+            <label>
+              Mobile Number
+              <input type="tel" name="phone" required maxlength="30" placeholder="+91 9876543210" />
+            </label>
+
+            <label>
+              Number of Guests
+              <input type="number" name="guests" required min="1" max="30" value="2" />
+            </label>
+
+            <label>
+              Reservation Date
+              <input type="date" name="reservationDate" required />
+            </label>
+
+            <label>
+              Reservation Time
+              <input type="time" name="reservationTime" required />
+            </label>
+
+            <label>
+              Occasion
+              <select name="occasion">
+                <option value="">Select (Optional)</option>
+                <option value="Family dinner">Family dinner</option>
+                <option value="Birthday">Birthday</option>
+                <option value="Anniversary">Anniversary</option>
+                <option value="Corporate meeting">Corporate meeting</option>
+                <option value="Festival celebration">Festival celebration</option>
+              </select>
+            </label>
+
+            <label class="full-width">
+              Special Instructions
+              <textarea name="specialRequest" rows="4" maxlength="1200" placeholder="Any food preferences, seating request, or other instructions"></textarea>
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="reservationSubmitBtn">Submit Reservation</button>
+            <p class="form-note">By submitting, you agree to be contacted regarding this reservation.</p>
+          </div>
+
+        </form>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-col footer-brand">
+        <img src="/Font.png" alt="Vojon Rosik wordmark" />
+        <h3>Best Family Bengali Restaurants In Kolkata Is Vojon Rosik Restaurant Pvt. Ltd</h3>
+        <p>Vojon Rosik Restaurant Pvt Ltd is one of the best family Bengali restaurants in Kolkata. We honor Bengal's rich flavors through heartfelt hospitality and authentic cuisine.</p>
+        <a class="footer-help-btn" href="tel:+919830024888">How can I help you ?</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="about.html">About</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="refund-policy.html">Refund Policy</a>
+        <a href="terms-conditions.html">Terms &amp; Conditions</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Other</h4>
+        <a href="menu.html">Menu</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="help-contact.html">Help &amp; Contact us</a>
+        <a href="reservation.html">Reservation</a>
+        <a href="blog.html">Blogs</a>
+      </div>
+
+      <div class="footer-col footer-contact">
+        <h4>Help &amp; Contact us</h4>
+        <a href="tel:+919830024888">+919830024888</a>
+        <a href="mailto:vojonrosikbangali1@gmail.com">vojonrosikbangali1@gmail.com</a>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    <img class="footer-mandala footer-mandala-right" src="/mandala.png" alt="" aria-hidden="true" />
+
+    <div class="footer-bottom">
+      <p>Copyright &copy; 2026. All Rights Reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
