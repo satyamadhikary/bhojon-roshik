@@ -1,160 +1,70 @@
-.membership-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-  align-items: center;
-  gap: 18px;
+.membership-panel {
   position: relative;
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+  padding: 10px 0 30px;
   overflow: hidden;
 }
 
-.membership-hero::after {
+.membership-panel::before,
+.membership-panel::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 85% 20%, rgba(255, 206, 132, 0.35), transparent 45%);
+  width: clamp(180px, 22vw, 320px);
+  height: clamp(180px, 22vw, 320px);
+  background: radial-gradient(circle at 35% 35%, rgba(255, 214, 140, 0.5), rgba(255, 190, 110, 0.15) 55%, transparent 70%),
+    url("mandala.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.3;
   pointer-events: none;
+  z-index: 0;
 }
 
-.membership-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 18px;
+.membership-panel::before {
+  top: -40px;
+  left: -40px;
 }
 
-.membership-card {
-  background: var(--panel);
+.membership-panel::after {
+  right: -40px;
+  bottom: -40px;
+  transform: rotate(180deg);
+}
+
+.membership-visual,
+.membership-form {
+  position: relative;
+  z-index: 1;
+}
+
+.membership-visual {
+  width: min(560px, 100%);
+  background: linear-gradient(135deg, rgba(255, 248, 236, 0.95), rgba(255, 232, 204, 0.85));
   border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 18px;
-  box-shadow: 0 12px 24px rgba(64, 38, 20, 0.12);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 16px 28px rgba(64, 38, 20, 0.14);
 }
 
-.membership-kicker {
-  margin: 0 0 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-weight: 700;
-  font-size: 0.75rem;
-  color: var(--ink-2);
-}
-
-.membership-info h2,
-.membership-hero h1 {
-  margin: 0 0 10px;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
-  color: #3d2316;
-}
-
-.membership-hero h1 {
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-}
-
-.hero-badge {
-  border-radius: 18px;
-  border: 1px solid rgba(120, 70, 30, 0.3);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(255, 230, 190, 0.72));
-  padding: 16px 18px;
-  box-shadow: 0 12px 24px rgba(64, 38, 20, 0.16);
-  text-align: center;
-}
-
-.hero-badge-title {
-  margin: 0 0 6px;
-  font-family: "Cinzel Decorative", "Cormorant Garamond", serif;
-  font-size: 1.2rem;
-  letter-spacing: 0.08em;
-  color: #4a2e1f;
-}
-
-.hero-badge-subtitle {
-  margin: 0;
-  font-weight: 600;
-  color: var(--ink-2);
-}
-
-.membership-info p {
-  margin: 0 0 12px;
-  line-height: 1.7;
-}
-
-.steps-grid {
-  display: grid;
-  gap: 12px;
-  margin-bottom: 18px;
-}
-
-.step-card {
-  border-radius: 14px;
-  border: 1px solid rgba(120, 70, 30, 0.2);
-  background: rgba(255, 250, 242, 0.9);
-  padding: 12px 14px;
-}
-
-.step-number {
-  display: inline-flex;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: rgba(75, 46, 29, 0.12);
-  font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  margin-bottom: 6px;
-}
-
-.step-card h3 {
-  margin: 0 0 6px;
-  font-size: 1.1rem;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  color: #4a2e1f;
-}
-
-.step-card p {
-  margin: 0;
-  font-size: 0.95rem;
-}
-
-.membership-status {
-  border: 1px dashed rgba(102, 70, 36, 0.35);
-  background: rgba(255, 250, 240, 0.9);
-  border-radius: 14px;
-  padding: 14px;
-}
-
-.status-label {
-  margin: 0 0 6px;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--ink-2);
-}
-
-.status-pill {
-  margin: 0 0 6px;
-  display: inline-flex;
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: linear-gradient(120deg, #f3b46b, #f7d59c);
-  color: #3a210f;
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-
-.status-note {
-  margin: 0;
-  font-size: 0.95rem;
+.membership-visual img {
+  width: 100%;
+  height: clamp(190px, 30vw, 320px);
+  display: block;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
 .membership-form {
+  width: min(520px, 100%);
   display: grid;
-  gap: 14px;
-}
-
-.membership-form label {
-  display: grid;
-  gap: 6px;
-  font-weight: 600;
-  color: var(--ink-1);
+  gap: 12px;
+  padding: 18px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 12px 24px rgba(64, 38, 20, 0.12);
 }
 
 .membership-form input {
@@ -166,62 +76,7 @@
   font-family: inherit;
 }
 
-.file-field .file-drop {
-  position: relative;
-  border-radius: 16px;
-  border: 1px dashed rgba(112, 72, 35, 0.45);
-  background: linear-gradient(120deg, rgba(255, 244, 226, 0.9), rgba(255, 235, 200, 0.75));
-  padding: 18px;
-  text-align: center;
-}
-
-.file-field input[type="file"] {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.file-drop-copy {
-  pointer-events: none;
-  display: grid;
-  gap: 6px;
-  justify-items: center;
-}
-
-.file-drop-copy i {
-  font-size: 1.4rem;
-  color: #4b2e1d;
-}
-
-.file-title {
-  margin: 0;
-  font-weight: 700;
-  color: #3a210f;
-}
-
-.file-subtitle {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--ink-2);
-}
-
-.file-hint {
-  font-size: 0.85rem;
-  color: var(--ink-2);
-}
-
-.file-error {
-  font-size: 0.85rem;
-  color: #9b2f1d;
-}
-
-.form-actions {
-  display: grid;
-  gap: 8px;
-}
-
-.form-actions button {
+.membership-form button {
   border: none;
   border-radius: 999px;
   padding: 12px 18px;
@@ -234,28 +89,31 @@
   box-shadow: 0 10px 18px rgba(45, 28, 17, 0.25);
 }
 
-.form-actions button:hover {
+.membership-form button:hover {
   filter: brightness(1.05);
 }
 
-.form-note {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--ink-2);
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 @media (max-width: 720px) {
-  .membership-card {
+  .membership-visual {
+    padding: 12px;
+  }
+
+  .membership-form {
     padding: 16px;
   }
 
-  .form-actions button {
+  .membership-form button {
     width: 100%;
-  }
-}
-
-@media (max-width: 860px) {
-  .membership-hero {
-    grid-template-columns: 1fr;
   }
 }

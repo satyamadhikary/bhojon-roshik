@@ -1,0 +1,115 @@
+.invoice-shell {
+  display: grid;
+  gap: 18px;
+}
+
+.invoice-head {
+  text-align: center;
+  background: rgba(255, 252, 245, 0.92);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 22px 18px;
+  box-shadow: 0 14px 30px rgba(64, 38, 20, 0.12);
+}
+
+.invoice-kicker {
+  margin: 0 0 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--ink-2);
+}
+
+.invoice-head h1 {
+  margin: 0 0 8px;
+  font-family: "Cinzel Decorative", "Cormorant Garamond", serif;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  color: #3d2316;
+}
+
+.invoice-note {
+  margin: 0;
+  line-height: 1.7;
+}
+
+.invoice-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 12px 24px rgba(64, 38, 20, 0.12);
+}
+
+.invoice-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.invoice-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 10px;
+  padding: 10px 12px;
+  background: rgba(255, 250, 242, 0.9);
+  border: 1px solid rgba(120, 70, 30, 0.2);
+  border-radius: 12px;
+}
+
+.invoice-row.full {
+  grid-template-columns: 180px 1fr;
+}
+
+.invoice-row .label {
+  font-weight: 700;
+  color: #4a2e1f;
+}
+
+.invoice-row .value {
+  color: var(--ink-1);
+}
+
+.invoice-actions {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.invoice-actions button {
+  border: none;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #fff8f0;
+  background: linear-gradient(120deg, #4b2e1d, #7a4a2c);
+  cursor: pointer;
+  box-shadow: 0 10px 18px rgba(45, 28, 17, 0.25);
+}
+
+.invoice-actions button:hover {
+  filter: brightness(1.05);
+}
+
+.back-link {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff2d7;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+}
+
+@media (max-width: 720px) {
+  .invoice-row {
+    grid-template-columns: 1fr;
+  }
+
+  .invoice-row.full {
+    grid-template-columns: 1fr;
+  }
+}

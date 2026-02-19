@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vojon Rosik - Reservation Invoice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="page-common.css" />
+  <link rel="stylesheet" href="reservation-invoice.css" />
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" defer></script>
+  <script src="reservation-invoice.js" defer></script>
+</head>
+<body>
+  <main class="page-shell">
+    <section class="invoice-shell">
+      <div class="invoice-head">
+        <p class="invoice-kicker">Reservation Confirmation</p>
+        <h1>VOJON ROSIK RESTAURANT Pvt. Ltd</h1>
+        <p class="invoice-note">Your reservation details are confirmed below. Download the invoice for your records.</p>
+      </div>
+
+      <article class="invoice-card">
+        <div class="invoice-grid">
+          <div class="invoice-row">
+            <span class="label">Full Name</span>
+            <span id="invFullName" class="value">-</span>
+          </div>
+          <div class="invoice-row">
+            <span class="label">Email</span>
+            <span id="invEmail" class="value">-</span>
+          </div>
+          <div class="invoice-row">
+            <span class="label">Mobile Number</span>
+            <span id="invPhone" class="value">-</span>
+          </div>
+          <div class="invoice-row">
+            <span class="label">Guests</span>
+            <span id="invGuests" class="value">-</span>
+          </div>
+          <div class="invoice-row">
+            <span class="label">Reservation Date</span>
+            <span id="invDate" class="value">-</span>
+          </div>
+          <div class="invoice-row">
+            <span class="label">Reservation Time</span>
+            <span id="invTime" class="value">-</span>
+          </div>
+          <div class="invoice-row">
+            <span class="label">Occasion</span>
+            <span id="invOccasion" class="value">-</span>
+          </div>
+          <div class="invoice-row full">
+            <span class="label">Special Instructions</span>
+            <span id="invNotes" class="value">-</span>
+          </div>
+        </div>
+
+        <div class="invoice-actions">
+          <button type="button" id="downloadInvoiceBtn">Download PDF</button>
+          <a href="reservation.html" class="back-link">Back to Reservation</a>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

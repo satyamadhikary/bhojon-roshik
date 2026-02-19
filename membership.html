@@ -58,81 +58,24 @@
   </div>
 </aside>
   <main class="page-shell">
-    <section class="page-head membership-hero">
-      <div>
-        <p class="membership-kicker">Vojon Rosik Loyalty</p>
-        <h1>Membership Validation Portal</h1>
-        <p>Upload your official membership PDF. Once verified, your invoice is generated automatically. If there is any mismatch, the request stays pending and is routed to our admin.</p>
+    <section class="membership-panel" aria-label="Membership panel">
+      <div class="membership-visual">
+        <img src="membership%20img.jpeg" alt="Membership requirements preview" />
       </div>
-      <div class="hero-badge">
-        <p class="hero-badge-title">VIP Member</p>
-        <p class="hero-badge-subtitle">Enjoy 15% Dining Benefit</p>
-      </div>
-    </section>
 
-    <section class="membership-grid">
-      <article class="membership-card membership-info">
-        <h2>How it works</h2>
-        <div class="steps-grid">
-          <div class="step-card">
-            <span class="step-number">01</span>
-            <h3>Enter details</h3>
-            <p>Provide your name and phone number exactly as on your membership card.</p>
-          </div>
-          <div class="step-card">
-            <span class="step-number">02</span>
-            <h3>Upload PDF</h3>
-            <p>Attach the official membership PDF issued by the outlet.</p>
-          </div>
-          <div class="step-card">
-            <span class="step-number">03</span>
-            <h3>Auto validation</h3>
-            <p>Verified data triggers the invoice. Mismatches are sent to admin.</p>
-          </div>
-        </div>
+      <form id="membershipForm" class="membership-form" action="https://formspree.io/f/maqdeqdk" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="New Membership Request - Vojon Rosik">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="Membership.pdf">
 
-        <div class="membership-status">
-          <p class="status-label">Invoice Status</p>
-          <p class="status-pill">Auto-issued on approval</p>
-          <p class="status-note">Pending submissions stay in review until they match.</p>
-        </div>
-      </article>
+        <label class="sr-only" for="memberName">Member Name</label>
+        <input id="memberName" type="text" name="memberName" required maxlength="120" placeholder="Name" />
 
-      <article class="membership-card membership-form-wrap">
-        <form id="membershipForm" class="membership-form" action="https://formspree.io/f/maqdeqdk" method="POST" enctype="multipart/form-data" novalidate>
-          <input type="hidden" name="_subject" value="New Membership Request - Vojon Rosik">
-          <input type="hidden" name="_template" value="table">
+        <label class="sr-only" for="memberContact">Contact Number</label>
+        <input id="memberContact" type="tel" name="memberContact" required maxlength="30" placeholder="Contact Number" />
 
-          <label>
-            Member Name
-            <input type="text" name="memberName" required maxlength="120" placeholder="e.g. Rabi Chandra" />
-          </label>
-
-          <label>
-            Member ID
-            <input type="text" name="memberId" required maxlength="40" placeholder="e.g. VOJON0031" />
-          </label>
-
-          <label class="file-field">
-            Upload Membership PDF
-            <div class="file-drop">
-              <input id="membershipFile" type="file" name="membershipFile" required accept="application/pdf" />
-              <div class="file-drop-copy">
-                <i class="bi bi-upload"></i>
-                <p class="file-title">Drop your PDF here</p>
-                <p class="file-subtitle">or click to browse</p>
-              </div>
-            </div>
-            <span class="file-hint">Make sure the PDF details match your card.</span>
-            <span id="fileError" class="file-error" role="alert" hidden></span>
-          </label>
-
-          <div class="form-actions">
-            <button type="submit" id="membershipSubmitBtn">Submit Membership</button>
-            <p class="form-note">Invoices are emailed after approval. Mismatch entries remain pending.</p>
-          </div>
-        </form>
-      </article>
+        <button type="submit" id="membershipSubmitBtn">Apply Now</button>
+      </form>
     </section>
   </main>
   <footer class="site-footer rich-footer">
