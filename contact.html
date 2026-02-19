@@ -176,6 +176,53 @@
       letter-spacing: 0.02em;
     }
 
+    .social-cta,
+    .social-poster {
+      position: relative;
+      z-index: 1;
+      touch-action: manipulation;
+    }
+
+    .contact-socials {
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+    }
+
+    .contact-socials h3 {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.3rem;
+      color: #3b2417;
+    }
+
+    .contact-social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .contact-social-links a {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid rgba(102, 59, 29, 0.18);
+      display: grid;
+      place-items: center;
+      background: #fff7ec;
+      color: #5b3a27;
+      font-size: 1.2rem;
+      box-shadow: 0 10px 18px rgba(63, 38, 20, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .contact-social-links a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 22px rgba(63, 38, 20, 0.18);
+    }
+
     .social-poster {
       flex: 1;
       display: grid;
@@ -300,10 +347,10 @@
               <img src="/img/LOGO.png" alt="Vojon Rosik restaurant logo">
               <span>Vojon Rosik restaurant</span>
             </div>
-            <a class="social-cta facebook-cta" href="https://www.facebook.com/share/1CA7PVbGA8/" target="_blank" rel="noopener">Follow on Facebook</a>
+            <a class="social-cta facebook-cta" href="https://www.facebook.com/share/1CK1LCfU71/" target="_blank" rel="noopener">Follow on Facebook</a>
           </div>
           <p class="instagram-caption">Join our Facebook community for announcements, offers, and celebration moments.</p>
-          <a class="social-poster facebook-poster" href="https://www.facebook.com/share/1CA7PVbGA8/" target="_blank" rel="noopener">
+          <a class="social-poster facebook-poster" href="https://www.facebook.com/share/1CK1LCfU71/" target="_blank" rel="noopener">
             <img src="/facebook.png" alt="Follow Vojon Rosik restaurant on Facebook">
           </a>
         </div>
@@ -322,14 +369,24 @@
               <img src="/img/LOGO.png" alt="Vojon Rosik restaurant logo">
               <span>@vojonrosikrestaurantofficial</span>
             </div>
-            <a class="social-cta instagram-cta" href="https://www.instagram.com/vojonrosikrestaurantofficial?igsh=YzNtNHBvdjZhb3du" target="_blank" rel="noopener">Follow on Instagram</a>
+            <a class="social-cta instagram-cta" href="https://www.instagram.com/vojonrosikrestaurant_official?igsh=aDZseWd1cTBpaWx3" target="_blank" rel="noopener">Follow on Instagram</a>
           </div>
           <p class="instagram-caption">A live look at our latest dishes, celebrations, and Bengali hospitality.</p>
-          <a class="social-poster instagram-poster" href="https://www.instagram.com/vojonrosikrestaurantofficial?igsh=YzNtNHBvdjZhb3du" target="_blank" rel="noopener">
+          <a class="social-poster instagram-poster" href="https://www.instagram.com/vojonrosikrestaurant_official?igsh=aDZseWd1cTBpaWx3" target="_blank" rel="noopener">
             <img src="/instagram.png" alt="Follow Vojon Rosik restaurant on Instagram">
           </a>
         </div>
       </article>
+    </section>
+
+    <section class="contact-socials" aria-label="Social media links">
+      <h3>Connect With Us</h3>
+      <div class="contact-social-links">
+        <a href="https://www.facebook.com/share/1CK1LCfU71/" aria-label="Facebook" target="_blank" rel="noopener"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/vojonrosikrestaurant_official?igsh=aDZseWd1cTBpaWx3" aria-label="Instagram" target="_blank" rel="noopener"><i class="bi bi-instagram"></i></a>
+        <a href="https://youtube.com/@thevojonrosikrestaurant?si=GNhEwVI5v-pgzv21" aria-label="YouTube" target="_blank" rel="noopener"><i class="bi bi-youtube"></i></a>
+        <a href="mailto:vojonrosikbangali1@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
+      </div>
     </section>
   </main>
   <footer class="site-footer rich-footer">
@@ -364,10 +421,10 @@
       <a href="tel:+919830024888">+919830024888</a>
       <a href="mailto:vojonrosikbangali1@gmail.com">vojonrosikbangali1@gmail.com</a>
       <div class="footer-socials">
-        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-        <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        <a href="https://www.facebook.com/share/1CK1LCfU71/" aria-label="Facebook" target="_blank" rel="noopener"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/vojonrosikrestaurant_official?igsh=aDZseWd1cTBpaWx3" aria-label="Instagram" target="_blank" rel="noopener"><i class="bi bi-instagram"></i></a>
+        <a href="https://youtube.com/@thevojonrosikrestaurant?si=GNhEwVI5v-pgzv21" aria-label="YouTube" target="_blank" rel="noopener"><i class="bi bi-youtube"></i></a>
+        <a href="mailto:vojonrosikbangali1@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
       </div>
     </div>
   </div>

@@ -6,6 +6,8 @@
       kicker: "Traditional Bengali Food",
       date: "February 12, 2026",
       readTime: "5 min read",
+      views: 17,
+      comments: 0,
       image: "/img/img2.webp",
       imageAlt: "Authentic Bengali cuisine platter",
       excerpt:
@@ -24,6 +26,8 @@
       kicker: "Signature Dishes",
       date: "February 12, 2026",
       readTime: "7 min read",
+      views: 92,
+      comments: 0,
       image: "/img/img5.webp",
       imageAlt: "Shorshe Ilish and Bengali biryani style dish",
       excerpt:
@@ -43,6 +47,8 @@
       kicker: "Our Story",
       date: "February 12, 2026",
       readTime: "6 min read",
+      views: 21,
+      comments: 0,
       image: "/img/img10.webp",
       imageAlt: "Vojon Rosik traditional Bengali food story",
       excerpt:
@@ -73,21 +79,18 @@
     feed.innerHTML = posts
       .map(function (post) {
         return (
-          '<article class="feed-card">' +
+          '<a class="feed-card" href="blog-post.html?slug=' + encodeURIComponent(post.slug) + '">' +
+          '<div class="feed-media">' +
           '<img class="feed-image" src="' + post.image + '" alt="' + escapeHtml(post.imageAlt) + '" />' +
+          "</div>" +
           '<div class="feed-copy">' +
           '<div class="feed-headline-row">' +
           '<p class="feed-kicker">' + escapeHtml(post.kicker) + "</p>" +
-          '<p class="feed-date">' + escapeHtml(post.date) + "</p>" +
           "</div>" +
           "<h2>" + escapeHtml(post.title) + "</h2>" +
           "<p>" + escapeHtml(post.excerpt) + "</p>" +
-          '<div class="feed-meta">' +
-          '<span class="feed-read-time">' + escapeHtml(post.readTime) + "</span>" +
-          '<a class="feed-link" href="blog-post.html?slug=' + encodeURIComponent(post.slug) + '">Read full post <i class="bi bi-arrow-right"></i></a>' +
           "</div>" +
-          "</div>" +
-          "</article>"
+          "</a>"
         );
       })
       .join("");

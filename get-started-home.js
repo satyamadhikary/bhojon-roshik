@@ -208,6 +208,8 @@
     var cards = Array.prototype.slice.call(track.querySelectorAll('.review-card'));
     var toggles = Array.prototype.slice.call(track.querySelectorAll('.review-toggle'));
     var navButtons = Array.prototype.slice.call(document.querySelectorAll('[data-reviews-nav]'));
+    var autoTimer = null;
+    var isPaused = false;
 
     function setExpanded(card, expanded) {
       card.classList.toggle('is-expanded', expanded);
@@ -230,13 +232,66 @@
       });
     });
 
+    function getGap() {
+      var styles = window.getComputedStyle(track);
+      var gapValue = parseFloat(styles.columnGap || styles.gap || '0');
+      return isNaN(gapValue) ? 0 : gapValue;
+    }
+
+    function getStep() {
+      if (!cards.length) return track.clientWidth * 0.9;
+      return cards[0].getBoundingClientRect().width + getGap();
+    }
+
+    function scrollByStep(direction) {
+      var step = getStep();
+      track.scrollBy({ left: step * direction, behavior: 'smooth' });
+    }
+
+    function startAuto() {
+      stopAuto();
+      autoTimer = window.setInterval(function () {
+        if (isPaused) return;
+        var maxScroll = track.scrollWidth - track.clientWidth;
+        if (track.scrollLeft >= maxScroll - 2) {
+          track.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          scrollByStep(1);
+        }
+      }, 5200);
+    }
+
+    function stopAuto() {
+      if (autoTimer) {
+        window.clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
     navButtons.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var direction = btn.getAttribute('data-reviews-nav') === 'next' ? 1 : -1;
-        var amount = track.clientWidth * 0.9;
-        track.scrollBy({ left: amount * direction, behavior: 'smooth' });
+        scrollByStep(direction);
       });
     });
+
+    track.addEventListener('mouseenter', function () {
+      isPaused = true;
+    });
+
+    track.addEventListener('mouseleave', function () {
+      isPaused = false;
+    });
+
+    track.addEventListener('touchstart', function () {
+      isPaused = true;
+    }, { passive: true });
+
+    track.addEventListener('touchend', function () {
+      isPaused = false;
+    });
+
+    startAuto();
   }
 
   initHeroSlider();
