@@ -1,57 +1,48 @@
 const membershipForm = document.getElementById("membershipForm");
-const membershipFile = document.getElementById("membershipFile");
-const fileError = document.getElementById("fileError");
-
-const setFileError = (message) => {
-  if (!fileError || !membershipFile) {
-    return;
-  }
-
-  if (message) {
-    fileError.textContent = message;
-    fileError.hidden = false;
-    membershipFile.setCustomValidity(message);
-  } else {
-    fileError.textContent = "";
-    fileError.hidden = true;
-    membershipFile.setCustomValidity("");
-  }
-};
-
-const handleFileValidation = () => {
-  if (!membershipFile) {
-    return;
-  }
-
-  const file = membershipFile.files && membershipFile.files[0];
-
-  if (!file) {
-    setFileError("Please upload your membership PDF.");
-    return;
-  }
-
-  const hasPdfExt = file.name ? file.name.trim().toLowerCase().endsWith(".pdf") : false;
-  const isPdfType = file.type === "application/pdf" || file.type === "";
-
-  if (!hasPdfExt || !isPdfType) {
-    setFileError("Invalid file. Please upload a PDF.");
-    membershipFile.value = "";
-    return;
-  }
-
-  setFileError("");
-};
-
-if (membershipFile) {
-  membershipFile.addEventListener("change", handleFileValidation);
-}
+const submitBtn = document.getElementById("membershipSubmitBtn");
 
 if (membershipForm) {
-  membershipForm.addEventListener("submit", (event) => {
-    handleFileValidation();
+  membershipForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-    if (!membershipForm.checkValidity()) {
-      event.preventDefault();
+    const payload = {
+      memberName: (membershipForm.querySelector("#memberName") || {}).value || "",
+      memberContact: (membershipForm.querySelector("#memberContact") || {}).value || "",
+      billId: (membershipForm.querySelector("#memberBillId") || {}).value || ""
+    };
+
+    try {
+      localStorage.setItem("membershipCardData", JSON.stringify(payload));
+    } catch (err) {
+      // Ignore storage errors and still submit to Formspree.
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting...";
+    }
+
+    const formData = new FormData(membershipForm);
+    try {
+      const response = await fetch(membershipForm.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json"
+        }
+      });
+
+      if (response.ok) {
+        window.location.href = new URL("membership-card.html", window.location.href).href;
+      } else if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Apply Now";
+      }
+    } catch (err) {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Apply Now";
+      }
     }
   });
 }

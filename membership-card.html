@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vojon Rosik - Membership Card</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px 0 40px;
+      background: #f7efe2;
+      font-family: "Times New Roman", Times, serif;
+      color: #000;
+    }
+
+    .card-shell {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .card-frame {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .card-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 18px;
+    }
+
+    .card-text {
+      position: absolute;
+      font-size: 30px;
+      color: #3b2417;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .card-name {
+      left: calc(27.5% - 20px);
+      top: 60.2%;
+      transform: translateY(-50%);
+    }
+
+    .card-id {
+      left: calc(69% + 93px);
+      top: 60.2%;
+      transform: translateY(-50%);
+    }
+
+    .download-btn {
+      justify-self: center;
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(92, 56, 29, 0.28);
+      background: #fff6e6;
+      color: #5d3214;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    .card-id,
+    .card-name {
+      text-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
+    }
+
+    @media (max-width: 720px) {
+      .card-text {
+        font-size: 18px;
+      }
+      .card-name {
+        left: calc(30% - 20px);
+        top: 60.5%;
+      }
+      .card-id {
+        left: calc(64% + 93px);
+        top: 60.5%;
+      }
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+
+      .card-shell {
+        max-width: none;
+        padding: 0;
+      }
+
+      .download-btn {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <section class="card-frame" aria-label="Membership card front">
+      <img src="membership1.png" alt="Vojon Rosik membership card front">
+      <div class="card-text card-name" id="cardMemberName"></div>
+      <div class="card-text card-id" id="cardBillId"></div>
+    </section>
+
+    <section class="card-frame" aria-label="Membership terms">
+      <img src="terms.png" alt="Vojon Rosik membership terms">
+    </section>
+
+    <button class="download-btn" type="button" id="downloadCard">Download PDF</button>
+  </main>
+  <script src="membership-card.js" defer></script>
+</body>
+</html>

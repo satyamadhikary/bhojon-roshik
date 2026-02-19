@@ -60,22 +60,36 @@
   <main class="page-shell">
     <section class="membership-panel" aria-label="Membership panel">
       <div class="membership-visual">
-        <img src="membership%20img.jpeg" alt="Membership requirements preview" />
+        <img src="membership img.png" alt="Membership requirements preview" />
       </div>
 
-      <form id="membershipForm" class="membership-form" action="https://formspree.io/f/maqdeqdk" method="POST" novalidate>
-        <input type="hidden" name="_subject" value="New Membership Request - Vojon Rosik">
+      <form id="membershipForm" class="membership-form" action="https://formspree.io/f/xjgeoqpy" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="Membership Form - Vojon Rosik (vojonrosikfeedback@gmail.com)">
         <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="Membership.pdf">
+        <input type="hidden" name="form_type" value="membership">
 
         <label class="sr-only" for="memberName">Member Name</label>
-        <input id="memberName" type="text" name="memberName" required maxlength="120" placeholder="Name" />
+        <input id="memberName" type="text" name="Member Name" required maxlength="120" placeholder="Name" />
 
         <label class="sr-only" for="memberContact">Contact Number</label>
-        <input id="memberContact" type="tel" name="memberContact" required maxlength="30" placeholder="Contact Number" />
+        <input id="memberContact" type="tel" name="Member Contact" required maxlength="30" placeholder="Contact Number" />
+
+        <label class="sr-only" for="memberBillId">Bill ID</label>
+        <input id="memberBillId" type="text" name="Bill Id" required maxlength="60" placeholder="Bill ID" />
 
         <button type="submit" id="membershipSubmitBtn">Apply Now</button>
       </form>
+    </section>
+    <section class="feedback-cta" aria-label="Feedback apply now">
+      <div class="feedback-cta__content">
+       
+        <h2>Feedback Apply Now</h2>
+        <p>Share your experience, favorite dishes, and ideas. It takes less than a minute and helps us serve you better.</p>
+      </div>
+      <a class="feedback-cta__button" href="https://docs.google.com/forms/d/e/1FAIpQLSfwCCwbMKblh9HgXT6N8Q-thqv0qRbkUZ6VS9TvP_qPGfu08g/viewform?usp=publish-editor">
+        <span>Apply Now</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </a>
     </section>
   </main>
   <footer class="site-footer rich-footer">

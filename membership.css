@@ -104,6 +104,105 @@
   border: 0;
 }
 
+.feedback-cta {
+  margin: 20px auto 40px;
+  padding: clamp(22px, 4vw, 36px);
+  display: grid;
+  gap: 18px;
+  width: min(980px, 100%);
+  border-radius: 24px;
+  border: 1px solid rgba(120, 78, 40, 0.25);
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255, 226, 175, 0.55), transparent 55%),
+    radial-gradient(circle at 90% 0%, rgba(118, 76, 44, 0.2), transparent 50%),
+    linear-gradient(120deg, rgba(255, 246, 234, 0.96), rgba(255, 234, 210, 0.86));
+  box-shadow: 0 18px 32px rgba(64, 38, 20, 0.12);
+  text-align: left;
+}
+
+.feedback-cta__content {
+  display: grid;
+  gap: 10px;
+}
+
+.feedback-cta__eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(90, 55, 28, 0.75);
+  font-weight: 600;
+}
+
+.feedback-cta h2 {
+  font-family: "Cinzel Decorative", serif;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  margin: 0;
+  color: #4b2e1d;
+}
+
+.feedback-cta p {
+  margin: 0;
+  color: rgba(54, 32, 16, 0.78);
+  font-size: 1rem;
+}
+
+.feedback-cta__button {
+  align-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(75, 46, 29, 0.28);
+  background: linear-gradient(120deg, #4b2e1d, #8a5531);
+  color: #fff6ea;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  box-shadow: 0 12px 22px rgba(45, 28, 17, 0.2);
+  position: relative;
+  overflow: hidden;
+  animation: feedback-pulse 3.2s ease-in-out infinite;
+}
+
+.feedback-cta__button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+}
+
+.feedback-cta__button:hover::after,
+.feedback-cta__button:focus-visible::after {
+  transform: translateX(120%);
+}
+
+.feedback-cta__button:hover,
+.feedback-cta__button:focus-visible {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+@keyframes feedback-pulse {
+  0%,
+  100% {
+    box-shadow: 0 12px 22px rgba(45, 28, 17, 0.2);
+  }
+  50% {
+    box-shadow: 0 16px 28px rgba(80, 46, 24, 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feedback-cta__button {
+    animation: none;
+    transition: none;
+  }
+}
+
 @media (max-width: 720px) {
   .membership-visual {
     padding: 12px;
@@ -114,6 +213,15 @@
   }
 
   .membership-form button {
+    width: 100%;
+  }
+
+  .feedback-cta {
+    text-align: center;
+  }
+
+  .feedback-cta__button {
+    justify-content: center;
     width: 100%;
   }
 }

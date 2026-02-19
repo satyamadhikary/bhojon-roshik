@@ -11,6 +11,13 @@
     dateInput.min = localNow.toISOString().split('T')[0];
   }
 
+  var nextInput = form.querySelector('input[name="_next"]');
+  if (nextInput) {
+    var origin = window.location.origin || '';
+    var basePath = origin ? origin.replace(/\/+$/, '') : '';
+    nextInput.value = basePath + '/reservation-invoice.html';
+  }
+
   form.addEventListener('submit', function () {
     var payload = {
       fullName: (form.querySelector('input[name="fullName"]') || {}).value || '',
@@ -32,9 +39,6 @@
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting...';
 
-    // Open invoice in current tab after the Formspree thank-you opens in new tab.
-    window.setTimeout(function () {
-      window.location.href = 'reservation-invoice.html';
-    }, 300);
+    // Formspree will redirect to _next in the same tab.
   });
 })();
