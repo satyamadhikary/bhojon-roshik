@@ -641,22 +641,36 @@ a {
 }
 
 .reviews-nav {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 1px solid rgba(92, 58, 33, 0.25);
-  background: #fff2df;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid rgba(92, 58, 33, 0.28);
+  background: linear-gradient(135deg, #fff6e8, #f3d9a8);
   color: #5a3a25;
-  font-size: 1.6rem;
+  font-size: 1.1rem;
   display: grid;
   place-items: center;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 12px 20px rgba(41, 24, 12, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 .reviews-nav:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 18px rgba(41, 24, 12, 0.18);
+}
+
+.reviews-nav:focus-visible {
+  outline: 2px solid rgba(181, 116, 52, 0.65);
+  outline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+  .reviews-nav {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
 }
 
 .reviews-track {
@@ -1335,4 +1349,7 @@ a {
 @media (min-width:981px){.desktop-nav-left{margin-left:-10px}}
 
 .site-header{overflow:visible}
+
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 
