@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,7 +28,13 @@
                 <img src="/img/LOGO.png" alt="Vojon Rosik logo">
             </a>
             <nav class="desktop-nav desktop-nav-right" aria-label="Primary right">
-              <a href="outlets.html">Outlets</a>
+              <div class="nav-dropdown">
+  <button class="nav-drop-toggle" type="button" aria-haspopup="true" aria-expanded="false">Outlets <i class="bi bi-chevron-down"></i></button>
+  <div class="nav-drop-menu" role="menu">
+    <a href="esplanade.html" role="menuitem">Esplanade</a>
+    <a href="bentinck.html" role="menuitem">Bentinck Street</a>
+  </div>
+</div>
               <a href="membership.html">Membership</a>
               <a href="reservation.html">Reservation</a>
               <a href="contact.html">Contact</a>
@@ -54,7 +60,15 @@
                 <a href="about.html" class="drawer-link">About</a>
                 <a href="menu.html" class="drawer-link">Menu</a>
                 <a href="blog.html" class="drawer-link">Blogs</a>
-                <a href="outlets.html" class="drawer-link">Outlets</a>
+                <div class="drawer-submenu" data-drawer-submenu>
+  <button class="drawer-link drawer-link-title" type="button" data-drawer-toggle aria-expanded="false">
+    Outlets <i class="bi bi-chevron-down"></i>
+  </button>
+  <div class="drawer-submenu-links" aria-hidden="true">
+    <a href="esplanade.html" class="drawer-link drawer-sublink">Esplanade</a>
+    <a href="bentinck.html" class="drawer-link drawer-sublink">Bentinck Street</a>
+  </div>
+</div>
                 <a href="membership.html" class="drawer-link">Membership</a>
                 <a href="reservation.html" class="drawer-link">Reservation</a>
                 <a href="contact.html" class="drawer-link">Contact</a>
@@ -130,7 +144,7 @@
                         <span class="reviews-label">GOOD</span>
                         <div class="reviews-rating">4.8</div>
                         <div class="reviews-stars" aria-hidden="true">
-                            <span>★</span><span>★</span><span>★</span><span>★</span><span class="is-dim">★</span>
+                            <span>?</span><span>?</span><span>?</span><span>?</span><span class="is-dim">?</span>
                         </div>
                         <p class="reviews-count">Based on recent reviews</p>
                         <div class="reviews-google">Google</div>
@@ -138,7 +152,7 @@
                 </div>
 
                 <div class="reviews-carousel" aria-label="Customer reviews">
-                    <button class="reviews-nav" type="button" data-reviews-nav="prev" aria-label="Scroll reviews left">‹</button>
+                    <button class="reviews-nav" type="button" data-reviews-nav="prev" aria-label="Scroll reviews left">�</button>
                     <div class="reviews-track" id="reviewsTrack">
                         <article class="review-card">
                             <div class="review-meta">
@@ -150,7 +164,7 @@
                                 <div class="review-source" aria-hidden="true">G</div>
                             </div>
                             <div class="review-stars" aria-hidden="true">
-                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                <span>?</span><span>?</span><span>?</span><span>?</span><span>?</span>
                             </div>
                             <p class="review-text">Had an absolutely amazing experience at Vojon Rosik Restaurant! Went for my Aiburobhat celebration from my Mashimoni-Meshomoshai who had booked the celebration there. The arrangements were amazing: there were probably more items than Kauravas in Kurukshetra and each item I could manage to try was really good! The owners of the place personally supervised the arrangements and made us feel very welcome and at home there. In addition to the food the decoration specific to the Aiburobhat was great too!</p>
                             <p class="review-text">A massive thanks to all the staff for organizing the event brilliantly. Totally recommended both for food and also for hosting occasions like Aiburobhat, Birthdays etc.!</p>
@@ -162,12 +176,12 @@
                                 <div class="review-avatar">R</div>
                                 <div>
                                     <h3>Rupsa Podder</h3>
-                                    <span>2 reviews · a month ago</span>
+                                    <span>2 reviews � a month ago</span>
                                 </div>
                                 <div class="review-source" aria-hidden="true">G</div>
                             </div>
                             <div class="review-stars" aria-hidden="true">
-                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                <span>?</span><span>?</span><span>?</span><span>?</span><span>?</span>
                             </div>
                             <p class="review-text">Vojon Rosik's Bengali food is a total comfort! Super convenient location and the dishes are delicious. Definitely worth a visit if you're craving some authentic flavors.</p>
                             <button class="review-toggle" type="button">Read more</button>
@@ -178,15 +192,15 @@
                                 <div class="review-avatar">K</div>
                                 <div>
                                     <h3>kakadeyogesh</h3>
-                                    <span>Local Guide · a month ago</span>
+                                    <span>Local Guide � a month ago</span>
                                 </div>
                                 <div class="review-source" aria-hidden="true">G</div>
                             </div>
                             <div class="review-stars" aria-hidden="true">
-                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                <span>?</span><span>?</span><span>?</span><span>?</span><span>?</span>
                             </div>
-                            <p class="review-text">Vojon Rosik is an absolute gem! 😍 Had the Ilish Thali and it was pure bliss 🌟. The Ilish Fry and Ilish Shorshe were TO DIE FOR 😋 – perfectly cooked, flavors just right! Also tried the Pomfret, Katla, and Jumbo Prawns... every single dish was top-notch 👌. But here's the thing – the Mishti Doi was a letdown. It was packaged Dahi from Mother's Dairy 😐. Why settle for that when you can serve authentic Bengali goodness? 😏</p>
-                            <p class="review-text">Overall, amazing experience and I'd totally go back for the fish 🐟! 👌 #VojonRosik #BengaliFood #FoodReview #IlishThali</p>
+                            <p class="review-text">Vojon Rosik is an absolute gem! ?? Had the Ilish Thali and it was pure bliss ??. The Ilish Fry and Ilish Shorshe were TO DIE FOR ?? � perfectly cooked, flavors just right! Also tried the Pomfret, Katla, and Jumbo Prawns... every single dish was top-notch ??. But here's the thing � the Mishti Doi was a letdown. It was packaged Dahi from Mother's Dairy ??. Why settle for that when you can serve authentic Bengali goodness? ??</p>
+                            <p class="review-text">Overall, amazing experience and I'd totally go back for the fish ??! ?? #VojonRosik #BengaliFood #FoodReview #IlishThali</p>
                             <button class="review-toggle" type="button">Read more</button>
                         </article>
 
@@ -195,18 +209,18 @@
                                 <div class="review-avatar">P</div>
                                 <div>
                                     <h3>Parna Chatterjee</h3>
-                                    <span>3 reviews · 9 photos · Edited a month ago</span>
+                                    <span>3 reviews � 9 photos � Edited a month ago</span>
                                 </div>
                                 <div class="review-source" aria-hidden="true">G</div>
                             </div>
                             <div class="review-stars" aria-hidden="true">
-                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                <span>?</span><span>?</span><span>?</span><span>?</span><span>?</span>
                             </div>
                             <p class="review-text">I love Vojon Rosik. The food is good, staff behaviour is good. The best part is their quantity it is soo good, recently I visited this place. Every penny we spend worth it. I love their behaviour. Always recommend their Aiburobhat Thali.</p>
                             <button class="review-toggle" type="button">Read more</button>
                         </article>
                     </div>
-                    <button class="reviews-nav" type="button" data-reviews-nav="next" aria-label="Scroll reviews right">›</button>
+                    <button class="reviews-nav" type="button" data-reviews-nav="next" aria-label="Scroll reviews right">�</button>
                 </div>
             </div>
         </section>
@@ -239,7 +253,10 @@
         </div>
         <div class="footer-col footer-contact">
           <h4>Help &amp; Contact us</h4>
-          <a href="tel:+919830024888">+919830024888</a>
+          <div class="footer-phones">
+          <a href="tel:+919830024888">9830024888</a>
+          <a href="tel:+919830080022">9830080022</a>
+        </div>
           <a href="mailto:vojonrosikbangali1@gmail.com">vojonrosikbangali1@gmail.com</a>
           <div class="footer-socials">
             <a href="https://www.facebook.com/share/1CK1LCfU71/" aria-label="Facebook" target="_blank" rel="noopener"><i class="bi bi-facebook"></i></a>
@@ -288,6 +305,10 @@
     </section>
 </body>
 </html>
+
+
+
+
 
 
 

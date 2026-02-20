@@ -218,6 +218,25 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
+    .contact-whatsapp {
+      margin-top: 6px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .contact-whatsapp a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #25d366, #1ebc57);
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      box-shadow: 0 12px 22px rgba(18, 80, 42, 0.2);
+    }
+
     .contact-social-links a:hover {
       transform: translateY(-2px);
       box-shadow: 0 14px 22px rgba(63, 38, 20, 0.18);
@@ -298,7 +317,13 @@
       <img src="/img/LOGO.png" alt="Vojon Rosik logo" />
     </a>
     <nav class="desktop-nav desktop-nav-right" aria-label="Primary right">
-      <a href="outlets.html">Outlets</a>
+      <div class="nav-dropdown">
+  <button class="nav-drop-toggle" type="button" aria-haspopup="true" aria-expanded="false">Outlets <i class="bi bi-chevron-down"></i></button>
+  <div class="nav-drop-menu" role="menu">
+    <a href="esplanade.html" role="menuitem">Esplanade</a>
+    <a href="bentinck.html" role="menuitem">Bentinck Street</a>
+  </div>
+</div>
       <a href="membership.html">Membership</a>
       <a href="reservation.html">Reservation</a>
       <a href="contact.html">Contact</a>
@@ -322,7 +347,15 @@
   <a href="about.html" class="drawer-link">About</a>
   <a href="menu.html" class="drawer-link">Menu</a>
   <a href="blog.html" class="drawer-link">Blogs</a>
-  <a href="outlets.html" class="drawer-link">Outlets</a>
+  <div class="drawer-submenu" data-drawer-submenu>
+  <button class="drawer-link drawer-link-title" type="button" data-drawer-toggle aria-expanded="false">
+    Outlets <i class="bi bi-chevron-down"></i>
+  </button>
+  <div class="drawer-submenu-links" aria-hidden="true">
+    <a href="esplanade.html" class="drawer-link drawer-sublink">Esplanade</a>
+    <a href="bentinck.html" class="drawer-link drawer-sublink">Bentinck Street</a>
+  </div>
+</div>
   <a href="membership.html" class="drawer-link">Membership</a>
   <a href="reservation.html" class="drawer-link">Reservation</a>
   <a href="contact.html" class="drawer-link">Contact</a>
@@ -387,6 +420,12 @@
         <a href="https://youtube.com/@thevojonrosikrestaurant?si=GNhEwVI5v-pgzv21" aria-label="YouTube" target="_blank" rel="noopener"><i class="bi bi-youtube"></i></a>
         <a href="mailto:vojonrosikbangali1@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
       </div>
+      <div class="contact-whatsapp">
+        <a href="https://wa.me/919830024888" target="_blank" rel="noopener" aria-label="Chat on WhatsApp 9830024888">
+          <i class="bi bi-whatsapp"></i>
+          <span>WhatsApp 9830024888</span>
+        </a>
+      </div>
     </section>
   </main>
   <footer class="site-footer rich-footer">
@@ -418,7 +457,10 @@
 
     <div class="footer-col footer-contact">
       <h4>Help &amp; Contact us</h4>
-      <a href="tel:+919830024888">+919830024888</a>
+      <div class="footer-phones">
+          <a href="tel:+919830024888">9830024888</a>
+          <a href="tel:+919830080022">9830080022</a>
+        </div>
       <a href="mailto:vojonrosikbangali1@gmail.com">vojonrosikbangali1@gmail.com</a>
       <div class="footer-socials">
         <a href="https://www.facebook.com/share/1CK1LCfU71/" aria-label="Facebook" target="_blank" rel="noopener"><i class="bi bi-facebook"></i></a>
@@ -437,6 +479,10 @@
   <script src="page-common.js" defer></script>
 </body>
 </html>
+
+
+
+
 
 
 

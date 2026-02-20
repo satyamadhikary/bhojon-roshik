@@ -106,11 +106,11 @@
 
 .feedback-cta {
   margin: 20px auto 40px;
-  padding: clamp(22px, 4vw, 36px);
+  padding: clamp(18px, 3.2vw, 28px);
   display: grid;
-  gap: 18px;
-  width: min(980px, 100%);
-  border-radius: 24px;
+  gap: 14px;
+  width: min(820px, 100%);
+  border-radius: 20px;
   border: 1px solid rgba(120, 78, 40, 0.25);
   background:
     radial-gradient(circle at 10% 20%, rgba(255, 226, 175, 0.55), transparent 55%),
@@ -122,7 +122,7 @@
 
 .feedback-cta__content {
   display: grid;
-  gap: 10px;
+  gap: 6px;
 }
 
 .feedback-cta__eyebrow {
@@ -135,7 +135,7 @@
 
 .feedback-cta h2 {
   font-family: "Cinzel Decorative", serif;
-  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
   margin: 0;
   color: #4b2e1d;
 }
@@ -151,7 +151,7 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 22px;
+  padding: 12px 18px;
   border-radius: 999px;
   border: 1px solid rgba(75, 46, 29, 0.28);
   background: linear-gradient(120deg, #4b2e1d, #8a5531);
@@ -164,6 +164,17 @@
   position: relative;
   overflow: hidden;
   animation: feedback-pulse 3.2s ease-in-out infinite;
+}
+
+@media (min-width: 840px) {
+  .feedback-cta {
+    grid-template-columns: 1.3fr auto;
+    align-items: center;
+  }
+
+  .feedback-cta__button {
+    justify-self: end;
+  }
 }
 
 .feedback-cta__button::after {

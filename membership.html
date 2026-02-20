@@ -26,7 +26,13 @@
       <img src="/img/LOGO.png" alt="Vojon Rosik logo" />
     </a>
     <nav class="desktop-nav desktop-nav-right" aria-label="Primary right">
-      <a href="outlets.html">Outlets</a>
+      <div class="nav-dropdown">
+  <button class="nav-drop-toggle" type="button" aria-haspopup="true" aria-expanded="false">Outlets <i class="bi bi-chevron-down"></i></button>
+  <div class="nav-drop-menu" role="menu">
+    <a href="esplanade.html" role="menuitem">Esplanade</a>
+    <a href="bentinck.html" role="menuitem">Bentinck Street</a>
+  </div>
+</div>
       <a href="membership.html">Membership</a>
       <a href="reservation.html">Reservation</a>
       <a href="contact.html">Contact</a>
@@ -50,7 +56,15 @@
   <a href="about.html" class="drawer-link">About</a>
   <a href="menu.html" class="drawer-link">Menu</a>
   <a href="blog.html" class="drawer-link">Blogs</a>
-  <a href="outlets.html" class="drawer-link">Outlets</a>
+  <div class="drawer-submenu" data-drawer-submenu>
+  <button class="drawer-link drawer-link-title" type="button" data-drawer-toggle aria-expanded="false">
+    Outlets <i class="bi bi-chevron-down"></i>
+  </button>
+  <div class="drawer-submenu-links" aria-hidden="true">
+    <a href="esplanade.html" class="drawer-link drawer-sublink">Esplanade</a>
+    <a href="bentinck.html" class="drawer-link drawer-sublink">Bentinck Street</a>
+  </div>
+</div>
   <a href="membership.html" class="drawer-link">Membership</a>
   <a href="reservation.html" class="drawer-link">Reservation</a>
   <a href="contact.html" class="drawer-link">Contact</a>
@@ -83,11 +97,11 @@
     <section class="feedback-cta" aria-label="Feedback apply now">
       <div class="feedback-cta__content">
        
-        <h2>Feedback Apply Now</h2>
-        <p>Share your experience, favorite dishes, and ideas. It takes less than a minute and helps us serve you better.</p>
+        <h2>Share you experience </h2>
+        <p>We honoured to serve you</p>
       </div>
       <a class="feedback-cta__button" href="https://docs.google.com/forms/d/e/1FAIpQLSfwCCwbMKblh9HgXT6N8Q-thqv0qRbkUZ6VS9TvP_qPGfu08g/viewform?usp=publish-editor">
-        <span>Apply Now</span>
+        <span>Feedback</span>
         <i class="bi bi-arrow-up-right"></i>
       </a>
     </section>
@@ -121,7 +135,10 @@
 
     <div class="footer-col footer-contact">
       <h4>Help &amp; Contact us</h4>
-      <a href="tel:+919830024888">+919830024888</a>
+      <div class="footer-phones">
+          <a href="tel:+919830024888">9830024888</a>
+          <a href="tel:+919830080022">9830080022</a>
+        </div>
       <a href="mailto:vojonrosikbangali1@gmail.com">vojonrosikbangali1@gmail.com</a>
       <div class="footer-socials">
         <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
@@ -141,6 +158,10 @@
   <script src="membership.js" defer></script>
 </body>
 </html>
+
+
+
+
 
 
 

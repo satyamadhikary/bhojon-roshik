@@ -1333,3 +1333,6 @@ a {
 @media (min-width:981px){.header-shell{padding-left:2px}}
 @media (min-width:981px){.header-shell{padding-left:0}}
 @media (min-width:981px){.desktop-nav-left{margin-left:-10px}}
+
+.site-header{overflow:visible}
+
