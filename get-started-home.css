@@ -640,6 +640,13 @@ a {
   background: linear-gradient(270deg, rgba(243, 217, 168, 0.95), rgba(243, 217, 168, 0));
 }
 
+@media (max-width: 720px) {
+  .reviews-carousel::before,
+  .reviews-carousel::after {
+    display: none;
+  }
+}
+
 .reviews-nav {
   width: 46px;
   height: 46px;
@@ -749,23 +756,9 @@ a {
   overflow: hidden;
 }
 
-.review-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0));
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  pointer-events: none;
-}
-
 .review-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 22px 34px rgba(41, 24, 12, 0.2);
-}
-
-.review-card:hover::after {
-  opacity: 1;
 }
 
 .review-meta {
