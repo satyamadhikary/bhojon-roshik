@@ -754,7 +754,7 @@
           const autoplayState = { progress: 0 };
           autoplayTween = window.gsap.to(autoplayState, {
             progress: 1,
-            duration: 8,
+            duration: 4,
             ease: "none",
             onUpdate: () => {
               masterTimeline?.progress(autoplayState.progress);
