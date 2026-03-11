@@ -11,9 +11,9 @@
       image: "/img/img2.webp",
       imageAlt: "Authentic Bengali cuisine platter",
       excerpt:
-        "Authentic Bengali cuisine is shaped by Bengal's geography, cultural traditions, and a distinctive balance of flavors, making it one of the most celebrated regional cuisines in India.",
+        "Authentic Bengali cuisine is shaped by Bengal's geography, cultural traditions, and a distinctive balance of flavours, making it one of the most celebrated regional cuisines in India.",
       paragraphs: [
-        "Authentic Bengali cuisine is shaped by Bengal's geography, cultural traditions, and a distinctive balance of flavors, making it one of the most celebrated regional cuisines in India.",
+        "Authentic Bengali cuisine is shaped by Bengal's geography, cultural traditions, and a distinctive balance of flavours, making it one of the most celebrated regional cuisines in India.",
         "Deeply rooted in the river-rich landscape of Bengal, traditional Bengali food is built around rice and freshwater fish, along with seasonal vegetables and leafy greens.",
         "What defines authentic Bengali cuisine is its subtle use of spices, featuring mustard seeds, panch phoron, and the bold aroma of mustard oil to enhance natural flavors rather than overpower them.",
         "Time-honored Bengali cooking techniques such as slow cooking, steaming, and careful tempering help preserve taste, nutrition, and authenticity.",
@@ -36,7 +36,7 @@
         "If you're searching for an authentic Bengali restaurant near you, Vojon Rosik stands out as a destination for traditional Bengali cuisine prepared with care and authenticity.",
         "Known for its homestyle flavors and classic recipes, Vojon Rosik offers a menu that reflects the true taste of Bengal, making it a preferred choice for locals and visitors looking for genuine Bengali food.",
         "The highlight and signature dish at Vojon Rosik is Shorshe Ilish, one of the most iconic Bengali fish dishes. Made with premium hilsa fish, ground mustard seeds, and aromatic mustard oil, this dish delivers the bold yet balanced flavors that define authentic Bengali cuisine. For anyone searching online for Shorshe Ilish restaurant near me, Vojon Rosik is a must-visit.",
-        "Another popular favorite is the Bengali-style Chicken Biryani, prepared with fragrant rice, tender chicken, and carefully balanced spices. Unlike overly spicy versions, this traditional chicken biryani focuses on aroma, texture, and depth of flavor, making it ideal for those seeking authentic Bengali biryani in a local restaurant setting.",
+        "Another popular favorite is the Bengali-style Chicken Biryani, prepared with fragrant rice, tender chicken, and carefully balanced spices. Unlike overly spicy versions, this traditional chicken biryani focuses on aroma, texture, and depth of flavour, making it ideal for those seeking authentic Bengali biryani in a local restaurant setting.",
         "For meat lovers, Kosha Mangsho is one of the most ordered dishes at Vojon Rosik. This slow-cooked mutton curry is rich, deeply spiced, and cooked patiently to achieve its signature thick gravy. Often searched as best Kosha Mangsho near me, this dish perfectly represents classic Bengali non-vegetarian food.",
         "Whether you're craving authentic Bengali fish curry, traditional chicken biryani, or slow-cooked mutton dishes, Vojon Rosik offers a complete Bengali dining experience rooted in tradition. With its focus on local flavors, classic recipes, and comforting meals, Vojon Rosik continues to be a trusted choice for anyone looking for the best Bengali restaurant nearby."
       ]
@@ -52,9 +52,9 @@
       image: "/img/img10.webp",
       imageAlt: "Vojon Rosik traditional Bengali food story",
       excerpt:
-        "Vojon Rosik was founded with a simple yet heartfelt mission to bring authentic Bengali food in Kolkata closer to those who crave traditional flavors and homestyle cooking.",
+        "Vojon Rosik was founded with a simple yet heartfelt mission to bring authentic Bengali food in Kolkata closer to those who crave traditional flavours and homestyle cooking.",
       paragraphs: [
-        "Vojon Rosik was founded with a simple yet heartfelt mission to bring authentic Bengali food in Kolkata closer to those who crave traditional flavors and homestyle cooking.",
+        "Vojon Rosik was founded with a simple yet heartfelt mission to bring authentic Bengali food in Kolkata closer to those who crave traditional flavours and homestyle cooking.",
         "Inspired by family kitchens and recipes passed down through generations, our journey began as a way to preserve the true essence of traditional Bengali cuisine while serving the local community. Today, Vojon Rosik is proud to be known as a trusted destination for authentic Bengali cuisine in Kolkata, where food tastes just like home.",
         "Our love for Bengali food is deeply rooted in Bengal's culinary heritage. At Vojon Rosik, we focus on classic elements such as rice, freshwater fish, seasonal vegetables, and slow-cooked meat dishes that define traditional Bengali food. We use mustard oil, mustard seeds, and time-honored spice combinations to enhance natural flavors, staying true to the soul of authentic Bengali cooking in Kolkata.",
         "What makes Vojon Rosik stand out among Bengali restaurants in Kolkata is our commitment to traditional cooking techniques. We believe real Bengali food takes time. Slow cooking, gentle tempering, and careful preparation are essential to achieving depth and balance of flavor. Every dish reflects patience, authenticity, and respect for Bengali food culture.",
