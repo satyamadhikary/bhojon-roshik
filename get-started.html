@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Vojon Rosik - Home</title>
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17381661651"></script>
   <script>
@@ -306,8 +307,7 @@
 
     <section class="faq-bot" id="faqBot">
         <button class="faq-bot-toggle" id="faqBotToggle" type="button" aria-expanded="false" aria-controls="faqBotPanel">
-            <img src="/Font.png" alt="Vojon Rosik">
-            <span>FAQ Assistant</span>
+            <img src="/img/LOGO.png" alt="Open FAQ assistant">
         </button>
 
         <div class="faq-bot-panel" id="faqBotPanel" aria-hidden="true">
@@ -315,7 +315,7 @@
                 <strong>Vojon Rosik FAQs</strong>
                 <button type="button" id="faqBotClose" aria-label="Close FAQ assistant">&times;</button>
             </div>
-            <p class="faq-bot-hint">Ask about hours, reservation, catering, veg options, recipes, parking, and location.</p>
+            <p class="faq-bot-hint">Tap a quick question, or type your message below.</p>
             <div class="faq-bot-list" id="faqQuickList">
                 <button type="button" data-faq-key="hours">1. Opening hours</button>
                 <button type="button" data-faq-key="catering">4. Catering services</button>
@@ -325,12 +325,10 @@
                 <button type="button" data-faq-key="recipes">5. Traditional Bengali recipes</button>
                 <button type="button" data-faq-key="locations">7. Locations</button>
             </div>
-            <div class="faq-bot-response" id="faqBotResponse">
-                Select a question above, or type your query below.
-            </div>
+            <div class="faq-chat-thread" id="faqChatThread" role="log" aria-live="polite" aria-label="FAQ conversation"></div>
             <form class="faq-bot-form" id="faqBotForm">
-                <input id="faqBotInput" type="text" placeholder="Type your question..." autocomplete="off">
-                <button type="submit">Send</button>
+                <input id="faqBotInput" type="text" placeholder="Type your question..." autocomplete="off" />
+                <button type="submit" aria-label="Send message"><i class="bi bi-send-fill" aria-hidden="true"></i></button>
             </form>
             <div class="faq-bot-suggestions" id="faqSuggestions" aria-label="Suggested FAQ prompts"></div>
         </div>

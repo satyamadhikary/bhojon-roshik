@@ -79,12 +79,12 @@
     var faqPanel = document.getElementById('faqBotPanel');
     var faqClose = document.getElementById('faqBotClose');
     var faqList = document.getElementById('faqQuickList');
-    var faqResponse = document.getElementById('faqBotResponse');
+    var faqThread = document.getElementById('faqChatThread');
     var faqForm = document.getElementById('faqBotForm');
     var faqInput = document.getElementById('faqBotInput');
     var suggestions = document.getElementById('faqSuggestions');
 
-    if (!faqBot || !faqToggle || !faqPanel || !faqResponse) return;
+    if (!faqBot || !faqToggle || !faqPanel || !faqThread) return;
 
     var faqData = {
       hours: 'We are open every day from 11:30 AM to 11:00 PM.',
@@ -94,6 +94,16 @@
       recipes: 'Our menu follows traditional Bengali cooking with mustard oil, panch phoron, and slow-cooking methods.',
       parking: 'Parking availability depends on outlet location. Please call before visiting for current guidance.',
       locations: 'Check the Outlets page for full address and map directions.'
+    };
+
+    var faqLabels = {
+      hours: 'Opening hours',
+      veg: 'Vegetarian options',
+      reservation: 'Reservation',
+      catering: 'Catering services',
+      recipes: 'Traditional Bengali recipes',
+      parking: 'Parking',
+      locations: 'Locations'
     };
 
     var keywords = {
@@ -106,16 +116,42 @@
       locations: ['location', 'outlet', 'address', 'map']
     };
 
+    var hasStarted = false;
+
     function setOpen(open) {
       faqBot.classList.toggle('is-open', open);
       faqPanel.setAttribute('aria-hidden', String(!open));
       faqToggle.setAttribute('aria-expanded', String(open));
-      if (open && faqInput) faqInput.focus();
+      if (open && faqInput) {
+        ensureIntro();
+        faqInput.focus();
+      }
+    }
+
+    function appendMessage(role, text) {
+      if (!text) return;
+
+      var row = document.createElement('div');
+      row.className = 'faq-message ' + (role === 'user' ? 'faq-message-user' : 'faq-message-bot');
+
+      var bubble = document.createElement('p');
+      bubble.className = 'faq-bubble';
+      bubble.textContent = text;
+
+      row.appendChild(bubble);
+      faqThread.appendChild(row);
+      faqThread.scrollTop = faqThread.scrollHeight;
+    }
+
+    function ensureIntro() {
+      if (hasStarted) return;
+      appendMessage('bot', 'Hello. I am your Vojon Rosik assistant. Ask me about hours, reservation, catering, menu style, parking, or locations.');
+      hasStarted = true;
     }
 
     function respondByKey(key) {
       if (!faqData[key]) return;
-      faqResponse.textContent = faqData[key];
+      appendMessage('bot', faqData[key]);
       renderSuggestions(key);
     }
 
@@ -145,9 +181,11 @@
         .forEach(function (key) {
           var btn = document.createElement('button');
           btn.type = 'button';
-          btn.textContent = key.charAt(0).toUpperCase() + key.slice(1);
+          btn.textContent = faqLabels[key] || key.charAt(0).toUpperCase() + key.slice(1);
           btn.addEventListener('click', function () {
+            appendMessage('user', btn.textContent);
             respondByKey(key);
+            setOpen(true);
           });
           suggestions.appendChild(btn);
         });
@@ -172,6 +210,8 @@
     if (faqList) {
       faqList.querySelectorAll('button[data-faq-key]').forEach(function (btn) {
         btn.addEventListener('click', function () {
+          var label = btn.textContent.replace(/^\d+\.\s*/, '').trim();
+          appendMessage('user', label);
           respondByKey(btn.getAttribute('data-faq-key'));
           setOpen(true);
         });
@@ -184,12 +224,15 @@
         var text = faqInput.value.trim();
         if (!text) return;
 
+        appendMessage('user', text);
         var match = findMatch(text);
         if (match) {
           respondByKey(match);
         } else {
-          faqResponse.textContent =
-            'Thanks for your question. Please call +91 98300 24888 or use Contact page for detailed support.';
+          appendMessage(
+            'bot',
+            'Thanks for your question. For detailed support, call +91 98300 24888 or visit our Contact page.'
+          );
           renderSuggestions(null);
         }
 
